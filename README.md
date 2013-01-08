@@ -64,7 +64,7 @@ $ buster static -c _tests/buster.js
 Starting server on http://localhost:8282/
 ```
 
-...then point your browser to http://localhost:8282/. To generate code coverage reports:
+...then point your browser to http://localhost:8282/. To generate code coverage reports, for which [buster-coverage](https://github.com/ebi/buster-coverage) is required:
 
 ```
 $ buster server
