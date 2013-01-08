@@ -17,6 +17,10 @@
     "dom",
     "events"
   ],
+  "devDependencies": {
+    "buster": "~0.6.2",
+    "buster-coverage": "*"
+  },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/delegate"
 }
