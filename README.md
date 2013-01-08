@@ -64,7 +64,7 @@ $ buster static -c _tests/buster.js
 Starting server on http://localhost:8282/
 ```
 
-...then point your browser to http://localhost:8282/. To generate code coverage reports:
+...then point your browser to http://localhost:8282/. To generate code coverage reports, for which [buster-coverage](https://github.com/ebi/buster-coverage) is required:
 
 ```
 $ buster server
@@ -117,4 +117,4 @@ Only remove listeners registered with the given handler function, among the othe
 
 ## Credits and collaboration ##
 
-The lead developer of Delegate is [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia) at FT Labs. The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request. Enjoy.
+The lead developer of Delegate is [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia) at FT Labs. Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request. Enjoy.
