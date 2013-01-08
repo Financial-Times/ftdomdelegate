@@ -1,5 +1,5 @@
 {
-  "name": "delegate",
+  "name": "dom-delegate",
   "version": "0.1.0",
   "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
   "description": "Create and manage a DOM event delegator.",
