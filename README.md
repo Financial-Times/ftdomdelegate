@@ -81,7 +81,7 @@ The report in `build/logs/jscoverage/` can be processed using `genhtml`, which i
 
 ## API ##
 
-### .on(eventType, selector[, eventData], handler) ###
+### .on(eventType, selector, handler[, eventData]) ###
 
 #### `eventType (string)` ####
 
@@ -91,13 +91,13 @@ Space-separated list of events to listen for e.g. `mousedown mouseup mouseout` o
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
-#### `eventData (*)` ####
-
-If specified and non-null, will be made available in `event.data`.
-
 #### `handler (function)` ####
 
 Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
+
+#### `eventData (*)` ####
+
+If defined and non-null, will be made available in `event.data`.
 
 ### .off([eventType][, selector][, handler]) ###
 
