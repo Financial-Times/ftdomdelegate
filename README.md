@@ -64,7 +64,20 @@ $ buster static -c _tests/buster.js
 Starting server on http://localhost:8282/
 ```
 
-...then point your browser to http://localhost:8282/.
+...then point your browser to http://localhost:8282/. To generate code coverage reports:
+
+```
+$ buster server
+buster-server running on http://localhost:1111
+```
+
+Point your browser to http://localhost:1111 and capture it, then in another terminal tab:
+
+```
+$ buster test -c _tests/buster.js
+```
+
+The report in `build/logs/jscoverage/` can be processed using `genhtml`, which is installed with `lcov`.
 
 ## API ##
 
