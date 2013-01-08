@@ -5,9 +5,9 @@ config["DelegateTests"] = {
     environment: "browser",
     extensions: [ require("buster-coverage") ],
     "buster-coverage": {
-        outputDirectory: "build/logs/jscoverage", //Write to this directory instead of coverage
-        format: "lcov", //At the moment cobertura and lcov are the only ones available
-        combinedResultsOnly: true //Write one combined file instead of one for each browser
+        outputDirectory: "build/logs/jscoverage",
+        format: "lcov",
+        combinedResultsOnly: true
     },
     sources: [
         "lib/delegate.js"
