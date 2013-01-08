@@ -25,7 +25,7 @@ The library has been deployed as part of the [FT Web App](http://app.ft.com/) an
 Include delegate.js in your JavaScript bundle or add it to your HTML page like this:
 
 ```html
-<script type='application/javascript' src='/path/to/fastclick.js'></script>
+<script type='application/javascript' src='/path/to/delegate.js'></script>
 ```
 
 The script must be loaded prior to instantiating a Delegate object.
@@ -52,7 +52,7 @@ Delegate comes with support for installation via the [Component package manager]
 
 ### NPM ###
 
-Installation via the [Node Package Manager](https://npmjs.org/package/fastclick) is supported, although Component is preferred as this is not strictly a Node packagage. Due to a naming conflict, Delegate is available as [`dom-delegate`](https://npmjs.org/package/dom-delegate).
+Installation via the [Node Package Manager](https://npmjs.org/package/dom-delegate) is supported, although Component is preferred as this is not strictly a Node packagage. Due to a naming conflict, Delegate is available as [`dom-delegate`](https://npmjs.org/package/dom-delegate).
 
 ## Tests ##
 
