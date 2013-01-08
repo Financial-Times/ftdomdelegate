@@ -279,22 +279,22 @@ buster.testCase('Delegate', {
 		var spyA = this.spy(), spyB = this.spy(), spyC = this.spy(), spyD = this.spy(), spyE = this.spy();
 		var dataA = 'some data', dataB = 'some other data';
 
-		delegate.on('click', '#delegate-test-clickable', dataA, function(event) {
+		delegate.on('click', '#delegate-test-clickable', function(event) {
 			assert.equals(dataA, event.data);
 			spyA();
-		});
+		}, dataA);
 
-		delegate.on('click', '#delegate-test-clickable', undefined, function(event) {
+		delegate.on('click', '#delegate-test-clickable', function(event) {
 			refute.equals(dataA, event.data);
 			refute.equals(dataB, event.data);
 			spyB();
-		});
+		}, undefined);
 
-		delegate.on('click', '#delegate-test-clickable', null, function(event) {
+		delegate.on('click', '#delegate-test-clickable', function(event) {
 			refute.equals(dataA, event.data);
 			refute.equals(dataB, event.data);
 			spyC();
-		});
+		}, null);
 
 		delegate.on('click', '#delegate-test-clickable', function(event) {
 			refute.equals(dataA, event.data);
@@ -302,10 +302,10 @@ buster.testCase('Delegate', {
 			spyD();
 		});
 
-		delegate.on('click', '#delegate-test-clickable', dataB, function(event) {
+		delegate.on('click', '#delegate-test-clickable', function(event) {
 			assert.equals(dataB, event.data);
 			spyE();
-		});
+		}, dataB);
 
 		var element = document.getElementById('delegate-test-clickable');
 
