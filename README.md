@@ -54,6 +54,18 @@ Delegate comes with support for installation via the [Component package manager]
 
 Installation via the [Node Package Manager](https://npmjs.org/package/fastclick) is supported, although Component is preferred as this is not strictly a Node packagage.
 
+## Tests ##
+
+Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `_tests/`. To run the tests statically:
+
+```
+$ cd delegate/
+$ buster static -c _tests/buster.js
+Starting server on http://localhost:8282/
+```
+
+...then point your browser to http://localhost:8282/.
+
 ## API ##
 
 ### .on(eventType, selector[, eventData], handler) ###
