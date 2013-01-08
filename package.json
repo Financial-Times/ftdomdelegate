@@ -12,11 +12,18 @@
     "type": "git",
     "url": "git://github.com/ftlabs/delegate.git"
   },
+  "scripts" : {
+    "test" : "node_modules/.bin/buster-test -c _tests/buster.js"
+  },
   "keywords": [
     "delegate",
     "dom",
     "events"
   ],
+  "devDependencies": {
+    "buster": "~0.6.2",
+    "buster-coverage": "*"
+  },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/delegate"
 }
