@@ -1,0 +1,22 @@
+{
+  "name": "delegate",
+  "version": "0.1.0",
+  "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
+  "description": "Create and manage a DOM event delegator.",
+  "contributors": [
+    "Matthew Caruana Galizia",
+    "Sam Giles"
+  ],
+  "main": "lib/delegate.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ftlabs/delegate.git"
+  },
+  "keywords": [
+    "delegate",
+    "dom",
+    "events"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ftlabs/delegate"
+}
