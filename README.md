@@ -54,7 +54,7 @@ Delegate comes with support for installation via the [Component package manager]
 
 ### NPM ###
 
-Installation via the [Node Package Manager](https://npmjs.org/package/dom-delegate) is supported, although Component is preferred as this is not strictly a Node packagage. Due to a naming conflict, Delegate is available as [`dom-delegate`](https://npmjs.org/package/dom-delegate).
+Installation via the [Node Package Manager](https://npmjs.org/package/dom-delegate) is supported, although Component is preferred as this is not strictly a Node package. Due to a naming conflict, Delegate is available as [`dom-delegate`](https://npmjs.org/package/dom-delegate).
 
 ## Tests ##
 
