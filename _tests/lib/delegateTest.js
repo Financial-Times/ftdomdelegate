@@ -3,16 +3,24 @@
 var setupHelper = {};
 
 setupHelper.setUp = function() {
-	document.body.insertAdjacentHTML('beforeend', '<div id="delegate-test-clickable" class="delegate-test-clickable"></div><div id="another-delegate-test-clickable"></div>');
+	document.body.insertAdjacentHTML('beforeend',
+		'<div id="container1">'
+			+ '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
+			+ '<div id="another-delegate-test-clickable"></div>'
+		+ '</div>'
+		+ '<div id="container2">'
+			+ '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
+		+ '</div>'
+	);
 };
 
 setupHelper.tearDown = function() {
 	var toRemove;
-	toRemove = document.getElementById('delegate-test-clickable');
+	toRemove = document.getElementById('container1');
 	if (toRemove) {
 		toRemove.parentNode.removeChild(toRemove);
 	}
-	toRemove = document.getElementById('another-delegate-test-clickable');
+	toRemove = document.getElementById('container2');
 	if (toRemove) {
 		toRemove.parentNode.removeChild(toRemove);
 	}
@@ -65,26 +73,15 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
-	'ID selectors are supported' : function() {
-		var delegate, spy, element;
-
-		delegate = new Delegate(document);
-		spy = this.spy();
-		delegate.on('click', '#delegate-test-clickable', spy);
-
-		element = document.getElementById('delegate-test-clickable');
-		element.dispatchEvent(setupHelper.getMouseEvent('click'));
-
-		assert.calledOnce(spy);
-
-		delegate.off();
-	},
 	'Tag selectors are supported' : function() {
 		var delegate, spy, element;
 
 		delegate = new Delegate(document);
 		spy = this.spy();
-		delegate.on('click', 'div', spy);
+		delegate.on('click', 'div', function (event) {
+			spy();
+			return false;
+		});
 
 		element = document.getElementById('delegate-test-clickable');
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
@@ -316,6 +313,64 @@ buster.testCase('Delegate', {
 		assert.called(spyC);
 		assert.called(spyD);
 		assert.called(spyE);
+
+		delegate.off();
+	},
+	'Can be instantiated without a root node' : function() {
+		var delegate = new Delegate();
+		var spyA = this.spy();
+		var element = document.getElementById('delegate-test-clickable');
+
+		delegate.on('click', '#delegate-test-clickable', function(event) {
+			spyA();
+		});
+
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		refute.called(spyA);
+		delegate.off();
+	},
+	'Can be bound to an element after its event listeners have been set up' : function() {
+		var delegate = new Delegate();
+		var spyA = this.spy();
+		var element = document.getElementById('delegate-test-clickable');
+
+		delegate.on('click', '#delegate-test-clickable', function(event) {
+			spyA();
+		});
+
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		delegate.bind(document);
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		assert.calledOnce(spyA);
+		delegate.off();
+	},
+	'Can be unbound from an element' : function() {
+		var delegate = new Delegate(document);
+		var spyA = this.spy();
+		var element = document.getElementById('delegate-test-clickable');
+
+		delegate.on('click', '#delegate-test-clickable', function(event) {
+			spyA();
+		});
+
+		delegate.unbind();
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		refute.called(spyA);
+		delegate.off();
+	},
+	'Can be to bound to a different DOM element': function () {
+		var delegate = new Delegate(document.getElementById('container1'));
+		var spyA = this.spy();
+		var element = document.getElementById('element-in-container2-test-clickable');
+
+		delegate.on('click', '.delegate-test-clickable', function(event) {
+			spyA();
+		});
+
+		delegate.bind(document.getElementById('container2'));
+
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		assert.calledOnce(spyA);
 
 		delegate.off();
 	},
