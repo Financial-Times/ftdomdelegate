@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
 }, false);
 ```
 
-Note: as of 0.1.2 you do not need to provide a DOM element at the point instantiation, it can be set later via the `bind` method.
+Note: as of 0.1.2 you do not need to provide a DOM element at the point instantiation, it can be set later via the `root` method.
 
 ### Google Closure Compiler ###
 
@@ -119,16 +119,14 @@ Only remove listeners registered with the given selector, among the other argume
 
 Only remove listeners registered with the given handler function, among the other arguments.
 
-### .bind(element) ###
+### .root([element]) ###
 
 #### `element (Node|string)` ####
 
 Set the delegate's root node or a selector string matching the root node.
 
-### .unbind() ###
-
-Unbind the delegate listener from the DOM element the delegate object is listening for events on.
+If no element or string passed in the root node will be deleted and the event listeners will be removed.
 
 ## Credits and collaboration ##
 
-The lead developer of Delegate is [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia) at FT Labs. Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request. Enjoy.
+The developers of Delegate are [Matthew Andrews](https://twitter.com/andrewsmatt) and [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia). Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request. Enjoy.

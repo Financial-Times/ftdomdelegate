@@ -339,7 +339,7 @@ buster.testCase('Delegate', {
 		});
 
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
-		delegate.bind(document);
+		delegate.root(document);
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 		assert.calledOnce(spyA);
 		delegate.off();
@@ -353,7 +353,7 @@ buster.testCase('Delegate', {
 			spyA();
 		});
 
-		delegate.unbind();
+		delegate.root();
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 		refute.called(spyA);
 		delegate.off();
@@ -367,7 +367,7 @@ buster.testCase('Delegate', {
 			spyA();
 		});
 
-		delegate.bind(document.getElementById('container2'));
+		delegate.root(document.getElementById('container2'));
 
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 		assert.calledOnce(spyA);
