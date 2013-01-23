@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
 }, false);
 ```
 
-Note: as of 0.1.2 you do not need to provide a DOM element at the point instantiation, it can be set later via the `root` method.
+Note: as of 0.1.2 you do not need to provide a DOM element at the point of instantiation, it can be set later via the `root` method.
 
 ### Google Closure Compiler ###
 
