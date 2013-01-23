@@ -359,17 +359,30 @@ buster.testCase('Delegate', {
 		delegate.off();
 	},
 	'Can be to bound to a different DOM element': function () {
-		var delegate = new Delegate(document.getElementById('container1'));
 		var spyA = this.spy();
 		var element = document.getElementById('element-in-container2-test-clickable');
 
+		// Attach to the first container
+		var delegate = new Delegate(document.getElementById('container1'));
+
+		// Listen to elements with class delegate-test-clickable
 		delegate.on('click', '.delegate-test-clickable', function(event) {
 			spyA();
 		});
 
+		// Click the element in the second container
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		// Ensure no click was caught
+		refute.called(spyA);
+
+		// Move the listeners to the second container
 		delegate.root(document.getElementById('container2'));
 
+		// Click the element in the second container again
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		// Ensure the click was caught
 		assert.calledOnce(spyA);
 
 		delegate.off();
