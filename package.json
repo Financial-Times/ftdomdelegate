@@ -1,6 +1,6 @@
 {
   "name": "dom-delegate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
   "description": "Create and manage a DOM event delegator.",
   "contributors": [
@@ -10,7 +10,7 @@
   "main": "lib/delegate.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ftlabs/delegate.git"
+    "url": "git://github.com/ftlabs/dom-delegate.git"
   },
   "scripts" : {
     "test" : "node_modules/.bin/buster-test -c _tests/buster.js"
@@ -25,5 +25,5 @@
     "buster-coverage": "*"
   },
   "license": "MIT",
-  "homepage": "https://github.com/ftlabs/delegate"
+  "homepage": "https://github.com/ftlabs/dom-delegate"
 }
