@@ -1,7 +1,7 @@
 {
   "name": "dom-delegate",
   "description": "Create and manage a DOM event delegator.",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/delegate.js",
   "scripts": [
     "lib/delegate.js"

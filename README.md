@@ -127,6 +127,10 @@ Set the delegate's root node or a selector string matching the root node.
 
 If no element or string passed in the root node will be deleted and the event listeners will be removed.
 
+### .destroy() ###
+
+Short hand for off() and root(), ie both with no parameters. Used to reset the delegate object.
+
 ## Credits and collaboration ##
 
 The developers of Delegate are [Matthew Andrews](https://twitter.com/andrewsmatt) and [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia). Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request. Enjoy.
