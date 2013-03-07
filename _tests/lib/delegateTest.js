@@ -86,8 +86,6 @@ buster.testCase('Delegate', {
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
 		refute.called(spy);
-
-		delegate.off();
 	},
 	'Tag selectors are supported' : function() {
 		var delegate, spy, element;
