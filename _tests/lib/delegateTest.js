@@ -73,6 +73,22 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
+	'Destroy destroys' : function() {
+		var delegate, spy, element;
+
+		delegate = new Delegate(document);
+		spy = this.spy();
+		delegate.on('click mouseover', '#delegate-test-clickable', spy);
+
+		delegate.destroy();
+
+		element = document.getElementById('delegate-test-clickable');
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		assert.calledOnce(spy);
+
+		delegate.off();
+	},
 	'Tag selectors are supported' : function() {
 		var delegate, spy, element;
 
@@ -86,7 +102,7 @@ buster.testCase('Delegate', {
 		element = document.getElementById('delegate-test-clickable');
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
-		assert.calledOnce(spy);
+		refute.called(spy);
 
 		delegate.off();
 	},
