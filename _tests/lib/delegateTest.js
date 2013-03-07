@@ -419,6 +419,20 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
+	'The root element, via a null selector, is supported': function() {
+		var delegate, spy, element;
+
+		delegate = new Delegate(document.body);
+		spy = this.spy();
+		delegate.on('click', null, spy);
+
+		element = document.body;
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		assert.calledOnce(spy);
+
+		delegate.off();
+	},
 	'tearDown': function() {
 		setupHelper.tearDown();
 	}
