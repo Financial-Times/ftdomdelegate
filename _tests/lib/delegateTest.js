@@ -85,7 +85,7 @@ buster.testCase('Delegate', {
 		element = document.getElementById('delegate-test-clickable');
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
-		assert.calledOnce(spy);
+		refute.called(spy);
 
 		delegate.off();
 	},
@@ -102,7 +102,7 @@ buster.testCase('Delegate', {
 		element = document.getElementById('delegate-test-clickable');
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
-		refute.called(spy);
+		assert.calledOnce(spy);
 
 		delegate.off();
 	},
