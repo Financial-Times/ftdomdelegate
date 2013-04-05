@@ -93,7 +93,7 @@ Space-separated list of events to listen for e.g. `mousedown mouseup mouseout` o
 
 #### `selector (string)` ####
 
-Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
+Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements. Null is also accepted and will match the root element set by `root()`.
 
 #### `handler (function)` ####
 
