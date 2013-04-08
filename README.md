@@ -95,6 +95,8 @@ Space-separated list of events to listen for e.g. `mousedown mouseup mouseout` o
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
+Null is also accepted and will match the root element set by `root()`.
+
 #### `handler (function)` ####
 
 Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
