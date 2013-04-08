@@ -419,6 +419,31 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
+
+	// Regression test for - https://github.com/ftlabs/dom-delegate/pull/10
+	'Regression test: event listener should be rebound after last event is removed and new events are added.' : function() {
+		var delegate, spy, element, textNode;
+
+		spy = this.spy();
+
+		delegate = new Delegate(document);
+		delegate.on('click', '#delegate-test-clickable', spy);
+
+		// Unbind event listeners
+		delegate.off();
+
+		delegate.on('click', '#delegate-test-clickable', spy);
+
+		element = document.getElementById('delegate-test-clickable');
+		textNode = document.createTextNode('Test text');
+		element.appendChild(textNode);
+
+		textNode.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		assert.called(spy);
+
+		delegate.off();
+	},
 	'tearDown': function() {
 		setupHelper.tearDown();
 	}
