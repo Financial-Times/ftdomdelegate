@@ -1,6 +1,6 @@
 # Delegate #
 
-[![Build Status](https://travis-ci.org/ftlabs/delegate.png?branch=master)](https://travis-ci.org/ftlabs/delegate)
+[![Build Status](https://travis-ci.org/ftlabs/dom-delegate.png?branch=master)](https://travis-ci.org/ftlabs/dom-delegate)
 
 Delegate is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether they exist at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
