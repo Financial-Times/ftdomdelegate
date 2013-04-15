@@ -42,8 +42,8 @@ buster.testCase('Delegate', {
 		var delegate = new Delegate(document);
 		var spyA = this.spy(), spyB = this.spy();
 
-		delegate.on('click mouseover', '#delegate-test-clickable', spyA);
-		delegate.on('click mouseover', '#delegate-test-clickable', spyB);
+		delegate.on('click', '#delegate-test-clickable', spyA);
+		delegate.on('click', '#delegate-test-clickable', spyB);
 
 		var element = document.getElementById("delegate-test-clickable");
 
@@ -64,7 +64,7 @@ buster.testCase('Delegate', {
 
 		delegate = new Delegate(document);
 		spy = this.spy();
-		delegate.on('click mouseover', '#delegate-test-clickable', spy);
+		delegate.on('click', '#delegate-test-clickable', spy);
 
 		element = document.getElementById('delegate-test-clickable');
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
@@ -78,7 +78,7 @@ buster.testCase('Delegate', {
 
 		delegate = new Delegate(document);
 		spy = this.spy();
-		delegate.on('click mouseover', '#delegate-test-clickable', spy);
+		delegate.on('click', '#delegate-test-clickable', spy);
 
 		delegate.destroy();
 
@@ -228,8 +228,8 @@ buster.testCase('Delegate', {
 		var delegate = new Delegate(document);
 		var spyA = this.spy(), spyB = this.spy();
 
-		delegate.on('click mouseover', '#delegate-test-clickable', spyA);
-		delegate.on('click mouseover', '#another-delegate-test-clickable', spyB);
+		delegate.on('click', '#delegate-test-clickable', spyA);
+		delegate.on('click', '#another-delegate-test-clickable', spyB);
 
 		delegate.off();
 

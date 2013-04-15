@@ -42,6 +42,8 @@ window.addEventListener('load', function() {
 
 Note: as of 0.1.2 you do not need to provide a DOM element at the point of instantiation, it can be set later via the `root` method.
 
+Also note: as of 0.2.0 you cannot specify more than one `eventType` in a single call to `off` or `on`.
+
 ### Google Closure Compiler ###
 
 Delegate supports compilation with `ADVANCED_OPTIMIZATIONS` ('advanced mode'), which should reduce its size by about 70% (60% gzipped). Note that exposure of the `Delegate` variable isn't forced therefore you must compile it along with all of your code.
@@ -89,7 +91,7 @@ The report in `build/logs/jscoverage/` can be processed using `genhtml`, which i
 
 #### `eventType (string)` ####
 
-Space-separated list of events to listen for e.g. `mousedown mouseup mouseout` or `click`.
+The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `click`.
 
 #### `selector (string)` ####
 
@@ -111,7 +113,7 @@ Calling `off` with no arguments will remove all registered listeners, effectivel
 
 #### `eventType (string)` ####
 
-Remove handlers for events matching these types, in a space-separated list, considering the other parameters.
+Remove handlers for events matching this type considering the other parameters.
 
 #### `selector (string)` ####
 

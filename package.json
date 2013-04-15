@@ -1,11 +1,12 @@
 {
   "name": "dom-delegate",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
   "description": "Create and manage a DOM event delegator.",
   "contributors": [
     "Matthew Caruana Galizia",
-    "Sam Giles"
+    "Sam Giles",
+    "Matt Andrews"
   ],
   "main": "lib/delegate.js",
   "repository": {
