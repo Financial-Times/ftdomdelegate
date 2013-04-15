@@ -460,6 +460,34 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
+
+	'Regression test: #root is chainable during setting of root': function() {
+		var delegate, spy, element;
+
+		delegate = new Delegate();
+		spy = this.spy();
+		delegate.root(document.body).on('click', null, spy);
+
+		element = document.body;
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		assert.calledOnce(spy);
+		delegate.off();
+	},
+
+	'Regression test: #root is chainable during unsetting of root': function() {
+		var delegate, spy, element;
+
+		delegate = new Delegate();
+		spy = this.spy();
+		delegate.root().on('click', null, spy);
+		delegate.root(document.body);
+
+		element = document.body;
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		assert.calledOnce(spy);
+		delegate.off();
+	},
+
 	'tearDown': function() {
 		setupHelper.tearDown();
 	}
