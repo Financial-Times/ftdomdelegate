@@ -477,7 +477,7 @@ buster.testCase('Delegate', {
 	'Regression test: #root is chainable during unsetting of root': function() {
 		var delegate, spy, element;
 
-		delegate = new Delegate();
+		delegate = new Delegate(document.body);
 		spy = this.spy();
 		delegate.root().on('click', null, spy);
 		delegate.root(document.body);
