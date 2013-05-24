@@ -38,12 +38,6 @@ Download the [production version](http://github.com/ftlabs/dom-delegate/raw/mast
 
 ## Usage ##
 
-Include delegate.js in your JavaScript bundle or add it to your HTML page like this:
-
-```html
-<script type='application/javascript' src='/path/to/delegate.js'></script>
-```
-
 The script must be loaded prior to instantiating a Delegate object.
 
 To instantiate Delegate on the `body` and listen to some events:
