@@ -20,6 +20,22 @@ The library has been deployed as part of the [FT Web App](http://app.ft.com/) an
 * Android Browser on Android 2 +
 * PlayBook OS 1 +
 
+## Installation ##
+
+```
+npm install dom-delegate
+```
+
+or
+
+```
+bower install dom-delegate
+```
+
+or
+
+Download the [production version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.min.js) (<1k gzipped) or the [development version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.js).
+
 ## Usage ##
 
 Include delegate.js in your JavaScript bundle or add it to your HTML page like this:
