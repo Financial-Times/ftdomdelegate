@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git://github.com/ftlabs/dom-delegate.git"
   },
+  "engines": {
+    "node": "*"
+  },
   "scripts": {
     "test": "node_modules/.bin/buster-test -c _tests/buster.js"
   },
