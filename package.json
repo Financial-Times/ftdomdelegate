@@ -17,7 +17,7 @@
     "node": "*"
   },
   "scripts": {
-    "test": "node_modules/.bin/buster-test -c _tests/buster.js"
+    "test": "node_modules/.bin/buster-test -c test/buster.js"
   },
   "keywords": [
     "delegate",
@@ -31,4 +31,3 @@
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/dom-delegate"
 }
-
