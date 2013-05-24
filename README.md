@@ -140,7 +140,9 @@ Remove handlers for events matching this type considering the other parameters.
 
 #### `selector (string|function)` ####
 
-Only remove listeners registered with the given selector, among the other arguments.  If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler)` (the third parameter will be ignored).
+Only remove listeners registered with the given selector, among the other arguments.
+
+If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler)` (the third parameter will be ignored).
 
 If `selector` is a function
 
