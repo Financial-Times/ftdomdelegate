@@ -17,7 +17,7 @@
     "node": "*"
   },
   "scripts": {
-    "test": "node_modules/.bin/buster-test -c test/buster.js"
+    "test": "./node_modules/.bin/grunt buster"
   },
   "keywords": [
     "delegate",
@@ -26,7 +26,12 @@
   ],
   "devDependencies": {
     "buster": "~0.6.2",
-    "buster-coverage": "*"
+    "buster-coverage": "*",
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.8",
+    "grunt-buster": "~0.1.2",
+    "grunt-browserify": "1.0.2",
+    "grunt-contrib-uglify": "~0.1.2"
   },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/dom-delegate"

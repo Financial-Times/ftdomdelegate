@@ -1,8 +1,6 @@
-# Delegate #
+# dom-delegate [![Build Status](https://travis-ci.org/ftlabs/dom-delegate.png?branch=master)](https://travis-ci.org/ftlabs/dom-delegate)
 
-[![Build Status](https://travis-ci.org/ftlabs/dom-delegate.png?branch=master)](https://travis-ci.org/ftlabs/dom-delegate)
-
-Delegate is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether they exist at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
+FT's dom-delegate is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether they exist at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
 Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
 
@@ -32,11 +30,38 @@ Include delegate.js in your JavaScript bundle or add it to your HTML page like t
 
 The script must be loaded prior to instantiating a Delegate object.
 
-To instantiate Delegate on the `body`:
+To instantiate Delegate on the `body` and listen to some events:
 
 ```js
+function handleButtonClicks(event) {
+  // do some things
+}
+
+function handleTouchMove(event) {
+  // do some other things
+}
+
 window.addEventListener('load', function() {
-	new Delegate(document.body);
+  var delegate = new Delegate(document.body);
+  delegate.on('click', 'button', handleButtonClicks);
+
+  // Listen to all touch move
+  // events that reach the body
+  delegate.on('touchmove', handleTouchMove);
+
+}, false);
+```
+
+A cool trick to handle images that fail to load:
+
+```js
+function handleImageFail() {
+  this.style.display = 'none';
+}
+
+window.addEventListener('load', function() {
+  var delegate = new Delegate(document.body);
+  delegate.on('error', 'img', handleImageFail);
 }, false);
 ```
 
@@ -93,13 +118,13 @@ The report in `build/logs/jscoverage/` can be processed using `genhtml`, which i
 
 The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `click`.
 
-#### `selector (string)` ####
+#### `selector (string|function)` ####
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
-Null is also accepted and will match the root element set by `root()`.
+`null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument (with `eventData` as an optional third parameter) is equivalent to `.on(eventType, null, handler[, eventData])`.
 
-#### `handler (function)` ####
+#### `handler (function|*)` ####
 
 Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
 
@@ -115,9 +140,11 @@ Calling `off` with no arguments will remove all registered listeners, effectivel
 
 Remove handlers for events matching this type considering the other parameters.
 
-#### `selector (string)` ####
+#### `selector (string|function)` ####
 
-Only remove listeners registered with the given selector, among the other arguments.
+Only remove listeners registered with the given selector, among the other arguments.  If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler)` (the third parameter will be ignored).
+
+If `selector` is a function
 
 #### `handler (function)` ####
 
