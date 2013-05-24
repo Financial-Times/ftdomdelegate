@@ -89,18 +89,6 @@ Also note: as of 0.2.0 you cannot specify more than one `eventType` in a single 
 
 Delegate supports compilation with `ADVANCED_OPTIMIZATIONS` ('advanced mode'), which should reduce its size by about 70% (60% gzipped). Note that exposure of the `Delegate` variable isn't forced therefore you must compile it along with all of your code.
 
-### AMD ###
-
-Delegate has AMD (Asynchronous Module Definition) support. This allows it to be lazy-loaded with an AMD loader, such as [RequireJS](http://requirejs.org/).
-
-### Component ###
-
-Delegate comes with support for installation via the [Component package manager](https://github.com/component/component).
-
-### NPM ###
-
-Installation via the [Node Package Manager](https://npmjs.org/package/dom-delegate) is supported, although Component is preferred as this is not strictly a Node package.
-
 ## Tests ##
 
 Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `test/`. To run the tests statically:

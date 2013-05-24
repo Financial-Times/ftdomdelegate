@@ -16,4 +16,3 @@ config["DelegateTests"] = {
     "test/tests/*.js"
   ]
 };
-
