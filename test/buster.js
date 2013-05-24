@@ -10,7 +10,7 @@ config["DelegateTests"] = {
     combinedResultsOnly: true
   },
   sources: [
-    "lib/delegate.js"
+    "build/dom-delegate.js"
   ],
   tests: [
     "test/tests/*.js"
