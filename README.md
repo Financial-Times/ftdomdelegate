@@ -62,11 +62,11 @@ Installation via the [Node Package Manager](https://npmjs.org/package/dom-delega
 
 ## Tests ##
 
-Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `_tests/`. To run the tests statically:
+Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `test/`. To run the tests statically:
 
 ```
 $ cd dom-delegate/
-$ buster static -c _tests/buster.js
+$ buster static -c test/buster.js
 Starting server on http://localhost:8282/
 ```
 
@@ -80,7 +80,7 @@ buster-server running on http://localhost:1111
 Point your browser to http://localhost:1111 and capture it, then in another terminal tab:
 
 ```
-$ buster test -c _tests/buster.js
+$ buster test -c test/buster.js
 ```
 
 The report in `build/logs/jscoverage/` can be processed using `genhtml`, which is installed with `lcov`.
