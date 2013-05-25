@@ -1,3 +1,5 @@
+/*jshint laxbreak:true*/
+
 /*global buster, assert, refute, Delegate*/
 
 var setupHelper = {};
@@ -457,6 +459,42 @@ buster.testCase('Delegate', {
 		element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
 		assert.calledOnce(spy);
+
+		delegate.off();
+	},
+
+	// Test for issues #16
+	'The root element, when passing a callback into the second parameter, is supported': function() {
+		var delegate, spy, element;
+
+		delegate = new Delegate(document.body);
+		spy = this.spy();
+		delegate.on('click', spy);
+
+		element = document.body;
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		assert.calledOnce(spy);
+
+		delegate.off();
+	},
+
+	// Test for issue #16
+	'Can unset a listener on the root element when passing the callback into the second parameter': function() {
+		var element = document.getElementById('element-in-container2-test-clickable');
+		var delegate = new Delegate(document.body);
+		var spy = this.spy();
+		var spy2 = this.spy();
+
+		delegate.on('click', spy);
+		delegate.on('click', '#element-in-container2-test-clickable', spy2);
+
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+		delegate.off('click', spy);
+		element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+		assert.calledOnce(spy);
+		assert.calledTwice(spy2);
 
 		delegate.off();
 	},

@@ -1,6 +1,6 @@
 {
   "name": "dom-delegate",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
   "description": "Create and manage a DOM event delegator.",
   "contributors": [
@@ -8,13 +8,16 @@
     "Sam Giles",
     "Matt Andrews"
   ],
-  "main": "lib/delegate.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/ftlabs/dom-delegate.git"
   },
+  "engines": {
+    "node": "*"
+  },
   "scripts": {
-    "test": "node_modules/.bin/buster-test -c _tests/buster.js"
+    "test": "./node_modules/.bin/buster test"
   },
   "keywords": [
     "delegate",
@@ -23,7 +26,11 @@
   ],
   "devDependencies": {
     "buster": "~0.6.2",
-    "buster-coverage": "*"
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.8",
+    "grunt-buster": "~0.1.2",
+    "grunt-browserify": "1.0.2",
+    "grunt-contrib-uglify": "~0.1.2"
   },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/dom-delegate"
