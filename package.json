@@ -8,7 +8,7 @@
     "Sam Giles",
     "Matt Andrews"
   ],
-  "main": "lib/delegate.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/ftlabs/dom-delegate.git"

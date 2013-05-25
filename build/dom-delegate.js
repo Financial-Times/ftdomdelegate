@@ -4,15 +4,6 @@ return (function(e,t,n){function i(n,s){if(!t[n]){if(!e[n]){var o=typeof require
 
 'use strict';
 
-/**
- * @preserve Create and manage a DOM event delegator.
- *
- * @version 0.2.1
- * @codingstandard ftlabs-jsv2
- * @copyright The Financial Times Limited [All Rights Reserved]
- * @license MIT License (see LICENSE.txt)
- */
-
 module.exports = Delegate;
 
 /**
