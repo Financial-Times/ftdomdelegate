@@ -1,6 +1,6 @@
 # dom-delegate [![Build Status](https://travis-ci.org/ftlabs/dom-delegate.png?branch=master)](https://travis-ci.org/ftlabs/dom-delegate)
 
-FT's dom-delegate is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether they exist at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
+FT's dom-delegate is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
 Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
 
