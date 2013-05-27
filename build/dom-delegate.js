@@ -17,8 +17,6 @@ module.exports = Delegate;
  * @param {Node|string} [root] The root node or a selector string matching the root node
  */
 function Delegate(root) {
-  var self = this;
-
   if (root) {
     this.root(root);
   }
