@@ -150,11 +150,9 @@ Only remove listeners registered with the given handler function, among the othe
 
 ### .root([element]) ###
 
-#### `element (Node|string)` ####
+#### `element (Node)` ####
 
-Set the delegate's root node or a selector string matching the root node.
-
-If no element or string passed in the root node will be deleted and the event listeners will be removed.
+Set the delegate's root node.  If no element passed in the root node will be deleted and the event listeners will be removed.
 
 ### .destroy() ###
 
