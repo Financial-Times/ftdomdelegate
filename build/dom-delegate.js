@@ -32,7 +32,7 @@ function Delegate(root) {
   this.listenerMap = {};
 
   /** @type function() */
-  this.handle = function(event) { Delegate.prototype.handle.call(self, event); };
+  this.handle = Delegate.prototype.handle.bind(this);
 }
 
 /**
@@ -364,9 +364,11 @@ Delegate.prototype.fire = function(event, target, listener) {
  * @type function()
  * @param {string} selector A CSS selector
  */
-Delegate.prototype.matches = (function(p) {
+Delegate.prototype.matches = (function(el) {
+  if (!el) return;
+  var p = el.prototype;
   return (p.matchesSelector || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || p.oMatchesSelector);
-}(HTMLElement.prototype));
+}(HTMLElement));
 
 /**
  * Check whether an element
