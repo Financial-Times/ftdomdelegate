@@ -11,7 +11,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ftlabs/dom-delegate.git"
+    "url": "git://github.com/ftlabs/ftdomdelegate.git"
   },
   "engines": {
     "node": "*"
