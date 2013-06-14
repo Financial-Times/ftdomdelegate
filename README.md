@@ -34,7 +34,7 @@ bower install dom-delegate
 
 or
 
-Download the [production version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.min.js) (<1k gzipped) or the [development version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.js).
+Download the [production version](http://github.com/ftlabs/ftdomdelegate/raw/master/build/dom-delegate.min.js) (<1k gzipped) or the [development version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.js).
 
 ## Usage ##
 
@@ -88,7 +88,7 @@ Delegate supports compilation with `ADVANCED_OPTIMIZATIONS` ('advanced mode'), w
 Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `test/`. To run the tests statically:
 
 ```
-$ cd dom-delegate/
+$ cd ftdomdelegate/
 $ buster static -c test/buster.js
 Starting server on http://localhost:8282/
 ```
