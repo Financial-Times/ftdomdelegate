@@ -44,11 +44,11 @@ To instantiate Delegate on the `body` and listen to some events:
 
 ```js
 function handleButtonClicks(event) {
-  // do some things
+  // Do some things
 }
 
 function handleTouchMove(event) {
-  // do some other things
+  // Do some other things
 }
 
 window.addEventListener('load', function() {
