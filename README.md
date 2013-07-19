@@ -93,7 +93,7 @@ $ buster static -c test/buster.js
 Starting server on http://localhost:8282/
 ```
 
-...then point your browser to http://localhost:8282/. To generate code coverage reports, for which [buster-coverage](https://github.com/ebi/buster-coverage) is required:
+...then point your browser to http://localhost:8282/.
 
 ```
 $ buster server
@@ -106,7 +106,7 @@ Point your browser to http://localhost:1111 and capture it, then in another term
 $ buster test -c test/buster.js
 ```
 
-The report in `build/logs/jscoverage/` can be processed using `genhtml`, which is installed with `lcov`.
+Code coverage is generated automatically with [istanbul](https://github.com/gotwarlost/istanbul).  The report outputs to `lcov-report/index.html`.
 
 ## API ##
 
