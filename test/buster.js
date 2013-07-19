@@ -8,5 +8,8 @@ config["DelegateTests"] = {
   ],
   tests: [
     "test/tests/*.js"
+  ],
+  extensions: [
+    require('buster-istanbul')
   ]
 };
