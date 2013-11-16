@@ -8,7 +8,7 @@ setupHelper.setUp = function() {
 	document.body.insertAdjacentHTML('beforeend',
 		'<div id="container1">'
 			+ '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
-			+ '<div id="another-delegate-test-clickable"></div>'
+			+ '<div id="another-delegate-test-clickable"><input id="js-input" /></div>'
 		+ '</div>'
 		+ '<div id="container2">'
 			+ '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
@@ -525,6 +525,31 @@ buster.testCase('Delegate', {
 		assert.calledOnce(spy);
 		delegate.off();
 	},
+
+  'Focus events can be caught': function() {
+    var delegate, spy, element;
+
+    delegate = new Delegate(document.body);
+    spy = this.spy();
+    spy2 = this.spy();
+    delegate.on('focus', 'input', spy);
+    element = document.getElementById('js-input');
+    element.focus();
+    assert.calledOnce(spy);
+  },
+
+  'Blur events can be caught': function() {
+    var delegate, spy, element;
+
+    delegate = new Delegate(document.body);
+    spy = this.spy();
+    spy2 = this.spy();
+    delegate.on('blur', 'input', spy);
+    element = document.getElementById('js-input');
+    element.focus();
+    element.blur();
+    assert.calledOnce(spy);
+  },
 
 	'tearDown': function() {
 		setupHelper.tearDown();
