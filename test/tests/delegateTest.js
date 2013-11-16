@@ -527,27 +527,32 @@ buster.testCase('Delegate', {
 	},
 
   'Focus events can be caught': function() {
-    var delegate, spy, element;
+    var delegate, spy, element, ev;
 
     delegate = new Delegate(document.body);
     spy = this.spy();
     spy2 = this.spy();
     delegate.on('focus', 'input', spy);
     element = document.getElementById('js-input');
-    element.focus();
+    ev = document.createEvent('Event');
+    ev.initEvent("focus", true, true);
+    element.dispatchEvent(ev);
     assert.calledOnce(spy);
   },
 
   'Blur events can be caught': function() {
-    var delegate, spy, element;
+    var delegate, spy, element, ev;
 
     delegate = new Delegate(document.body);
     spy = this.spy();
     spy2 = this.spy();
     delegate.on('blur', 'input', spy);
     element = document.getElementById('js-input');
-    element.focus();
-    element.blur();
+
+    ev = document.createEvent('Event');
+    ev.initEvent("blur", true, true);
+    element.dispatchEvent(ev);
+
     assert.calledOnce(spy);
   },
 
