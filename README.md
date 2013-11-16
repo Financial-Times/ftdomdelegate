@@ -89,21 +89,21 @@ Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `te
 
 ```
 $ cd ftdomdelegate/
-$ buster static -c test/buster.js
+$ ./node_modules/.bin/buster-static -c test/buster.js
 Starting server on http://localhost:8282/
 ```
 
 ...then point your browser to http://localhost:8282/.
 
 ```
-$ buster server
+$ ./node_modules/.bin/buster-server
 buster-server running on http://localhost:1111
 ```
 
 Point your browser to http://localhost:1111 and capture it, then in another terminal tab:
 
 ```
-$ buster test -c test/buster.js
+$ ./node_modules/.bin/buster-test -c test/buster.js
 ```
 
 Code coverage is generated automatically with [istanbul](https://github.com/gotwarlost/istanbul).  The report outputs to `lcov-report/index.html`.
