@@ -8,7 +8,7 @@ setupHelper.setUp = function() {
 	document.body.insertAdjacentHTML('beforeend',
 		'<div id="container1">'
 			+ '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
-			+ '<div id="another-delegate-test-clickable"></div>'
+			+ '<div id="another-delegate-test-clickable"><input id="js-input" /></div>'
 		+ '</div>'
 		+ '<div id="container2">'
 			+ '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
@@ -525,6 +525,36 @@ buster.testCase('Delegate', {
 		assert.calledOnce(spy);
 		delegate.off();
 	},
+
+  'Focus events can be caught': function() {
+    var delegate, spy, element, ev;
+
+    delegate = new Delegate(document.body);
+    spy = this.spy();
+    spy2 = this.spy();
+    delegate.on('focus', 'input', spy);
+    element = document.getElementById('js-input');
+    ev = document.createEvent('Event');
+    ev.initEvent("focus", true, true);
+    element.dispatchEvent(ev);
+    assert.calledOnce(spy);
+  },
+
+  'Blur events can be caught': function() {
+    var delegate, spy, element, ev;
+
+    delegate = new Delegate(document.body);
+    spy = this.spy();
+    spy2 = this.spy();
+    delegate.on('blur', 'input', spy);
+    element = document.getElementById('js-input');
+
+    ev = document.createEvent('Event');
+    ev.initEvent("blur", true, true);
+    element.dispatchEvent(ev);
+
+    assert.calledOnce(spy);
+  },
 
 	'tearDown': function() {
 		setupHelper.tearDown();
