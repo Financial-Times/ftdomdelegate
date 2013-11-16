@@ -96,7 +96,7 @@ Delegate.prototype.root = function(root) {
  * @returns boolean
  */
 Delegate.prototype.captureForType = function(eventType) {
-  return ['error', 'blur', 'focus'].indexOf(eventType);
+  return ['error', 'blur', 'focus'].indexOf(eventType) !== -1;
 };
 
 /**
