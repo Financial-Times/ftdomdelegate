@@ -173,6 +173,28 @@ buster.testCase('Delegate', {
 
 		delegate.off();
 	},
+	'Returning false from a callback should preventDefault': function(done) {
+		var delegate = new Delegate(document.body);
+
+		var spyA = this.spy();
+
+		delegate.on("click", '#delegate-test-clickable', function(event) {
+			spyA();
+
+			setTimeout(function() {
+				assert.equals(event.defaultPrevented, true);
+				done();
+			}, 0);
+
+			return false;
+		});
+
+		var element = document.getElementById('delegate-test-clickable');
+		element.dispatchEvent(setupHelper.getMouseEvent("click"));
+
+		assert.calledOnce(spyA);
+		delegate.off();
+	},
 	'Returning false from a callback should stop propagation globally': function() {
 		var delegateA = new Delegate(document), delegateB = new Delegate(document);
 

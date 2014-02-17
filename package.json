@@ -17,7 +17,7 @@
     "node": "*"
   },
   "scripts": {
-    "test": "./node_modules/.bin/buster test"
+    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/buster test"
   },
   "keywords": [
     "delegate",
