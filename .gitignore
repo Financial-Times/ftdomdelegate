@@ -2,3 +2,4 @@ node_modules
 lcov-report
 lcov.info
 npm-debug.log
+/build
