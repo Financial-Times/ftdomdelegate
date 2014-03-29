@@ -126,7 +126,7 @@ Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.c
 
 Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
 
-#### `eventData (*)` ####
+#### `eventData (*)` [deprecated] ####
 
 If defined and non-null, will be made available in `event.data`.
 
