@@ -34,7 +34,7 @@ bower install dom-delegate
 
 or
 
-Download the [production version](http://github.com/ftlabs/ftdomdelegate/raw/master/build/dom-delegate.min.js) (<1k gzipped) or the [development version](http://github.com/ftlabs/dom-delegate/raw/master/build/dom-delegate.js).
+Download the [build version](http://wzrd.in/standalone/dom-delegate@latest).
 
 ## Usage ##
 
