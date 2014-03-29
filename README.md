@@ -34,7 +34,7 @@ bower install dom-delegate
 
 or
 
-Download the [build version](http://wzrd.in/standalone/dom-delegate@latest).
+Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).
 
 ## Usage ##
 
