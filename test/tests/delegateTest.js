@@ -309,51 +309,6 @@ buster.testCase('Delegate', {
 		assert.called(spyA);
 		refute.called(spyB);
 	},
-	'Per-handler event data can be set when the handler is registered' : function() {
-		var delegate = new Delegate(document);
-		var spyA = this.spy(), spyB = this.spy(), spyC = this.spy(), spyD = this.spy(), spyE = this.spy();
-		var dataA = 'some data', dataB = 'some other data';
-
-		delegate.on('click', '#delegate-test-clickable', function(event) {
-			assert.equals(dataA, event.data);
-			spyA();
-		}, dataA);
-
-		delegate.on('click', '#delegate-test-clickable', function(event) {
-			refute.equals(dataA, event.data);
-			refute.equals(dataB, event.data);
-			spyB();
-		}, undefined);
-
-		delegate.on('click', '#delegate-test-clickable', function(event) {
-			refute.equals(dataA, event.data);
-			refute.equals(dataB, event.data);
-			spyC();
-		}, null);
-
-		delegate.on('click', '#delegate-test-clickable', function(event) {
-			refute.equals(dataA, event.data);
-			refute.equals(dataB, event.data);
-			spyD();
-		});
-
-		delegate.on('click', '#delegate-test-clickable', function(event) {
-			assert.equals(dataB, event.data);
-			spyE();
-		}, dataB);
-
-		var element = document.getElementById('delegate-test-clickable');
-
-		element.dispatchEvent(setupHelper.getMouseEvent('click'));
-
-		assert.called(spyA);
-		assert.called(spyB);
-		assert.called(spyC);
-		assert.called(spyD);
-		assert.called(spyE);
-
-		delegate.off();
-	},
 	'Can be instantiated without a root node' : function() {
 		var delegate = new Delegate();
 		var spyA = this.spy();

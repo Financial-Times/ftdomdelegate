@@ -110,7 +110,7 @@ Code coverage is generated automatically with [istanbul](https://github.com/gotw
 
 ## API ##
 
-### .on(eventType, selector, handler[, eventData]) ###
+### .on(eventType, selector, handler) ###
 
 #### `eventType (string)` ####
 
@@ -120,15 +120,11 @@ The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `cli
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
-`null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument (with `eventData` as an optional third parameter) is equivalent to `.on(eventType, null, handler[, eventData])`.
+`null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument is equivalent to `.on(eventType, null, handler)`.
 
 #### `handler (function|*)` ####
 
 Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
-
-#### `eventData (*)` [deprecated] ####
-
-If defined and non-null, will be made available in `event.data`.
 
 ### .off([eventType][, selector][, handler]) ###
 
