@@ -548,13 +548,21 @@ buster.testCase('Delegate', {
       captureSpy();
     }, true);
 
-    element = document.getElementById('delegate-test-clickable');
+    var element = document.getElementById('delegate-test-clickable');
     element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
     assert.equals(1, capturePhase);
     assert.equals(3, bubblePhase);
     assert.callOrder(captureSpy, bubbleSpy);
+
+    // Ensure unbind works properly
     delegate.off();
+
+    element = document.getElementById('delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'))
+
+    assert.calledOnce(captureSpy);
+    assert.calledOnce(bubbleSpy);
   },
 
 	'tearDown': function() {
