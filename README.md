@@ -144,7 +144,7 @@ Only remove listeners registered with the given selector, among the other argume
 
 If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler[, useCapture])` (the third parameter will be ignored).
 
-#### `handler (function)` ####
+#### `handler (function|boolean)` ####
 
 Only remove listeners registered with the given handler function, among the other arguments.  If not provided, remove all handlers.
 
