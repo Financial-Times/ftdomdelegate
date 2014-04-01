@@ -110,7 +110,7 @@ Code coverage is generated automatically with [istanbul](https://github.com/gotw
 
 ## API ##
 
-### .on(eventType, selector, handler[, eventData]) ###
+### .on(eventType, selector, handler[, useCapture]) ###
 
 #### `eventType (string)` ####
 
@@ -120,17 +120,17 @@ The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `cli
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
-`null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument (with `eventData` as an optional third parameter) is equivalent to `.on(eventType, null, handler[, eventData])`.
+`null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument is equivalent to `.on(eventType, null, handler)`.
 
-#### `handler (function|*)` ####
+#### `handler (function|boolean)` ####
 
-Function that will handle the specified event on elements matching the given selector. The function will receive two arguments: the native event object and the target element, in that order.
+Function that will handle the specified event on elements matching the given selector.  The function will receive two arguments: the native event object and the target element, in that order.
 
-#### `eventData (*)` [deprecated] ####
+#### `useCapture (boolean)` ####
 
-If defined and non-null, will be made available in `event.data`.
+Whether or not to listen during the capturing (pass in `true`) or bubbling phase (pass in `false`).  If no value passed in, it will fallback to a 'sensible default', which is `true` for `error`, `blur` and `focus` events and `false` for all other types.
 
-### .off([eventType][, selector][, handler]) ###
+### .off([eventType][, selector][, handler][, useCapture]) ###
 
 Calling `off` with no arguments will remove all registered listeners, effectively resetting the instance.
 
@@ -142,11 +142,15 @@ Remove handlers for events matching this type considering the other parameters.
 
 Only remove listeners registered with the given selector, among the other arguments.
 
-If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler)` (the third parameter will be ignored).
+If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler[, useCapture])` (the third parameter will be ignored).
 
-#### `handler (function)` ####
+#### `handler (function|boolean)` ####
 
-Only remove listeners registered with the given handler function, among the other arguments.
+Only remove listeners registered with the given handler function, among the other arguments.  If not provided, remove all handlers.
+
+#### `useCapture (boolean)` ####
+
+Only remove listeners with `useCapture` set to the value passed in.  If not provided, remove listeners added with `useCapture` set to `true` and `false`.
 
 ### .root([element]) ###
 
