@@ -122,7 +122,7 @@ Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.c
 
 `null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument is equivalent to `.on(eventType, null, handler)`.
 
-#### `handler (function|*)` ####
+#### `handler (function|boolean)` ####
 
 Function that will handle the specified event on elements matching the given selector.  The function will receive two arguments: the native event object and the target element, in that order.
 
