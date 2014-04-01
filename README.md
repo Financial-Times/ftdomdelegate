@@ -150,7 +150,7 @@ Only remove listeners registered with the given handler function, among the othe
 
 #### `useCapture (boolean)` ####
 
-Only remove listeners with `useCapture` set to the value passed in.  If not provied, remove listeners added with `useCapture` set to `true` and `false`.
+Only remove listeners with `useCapture` set to the value passed in.  If not provided, remove listeners added with `useCapture` set to `true` and `false`.
 
 ### .root([element]) ###
 
