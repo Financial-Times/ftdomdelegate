@@ -532,6 +532,30 @@ buster.testCase('Delegate', {
 
     assert.calledOnce(spy);
   },
+  'Test setting useCapture true false works get attached to capturing and bubbling event handlers, respectively' : function() {
+    var delegate = new Delegate(document);
+    var bubbleSpy = this.spy();
+    var captureSpy = this.spy();
+    var bubblePhase;
+    var capturePhase;
+
+    delegate.on('click', '.delegate-test-clickable', function(event) {
+      bubblePhase = event.eventPhase;
+      bubbleSpy();
+    }, false);
+    delegate.on('click', '.delegate-test-clickable', function(event) {
+      capturePhase = event.eventPhase;
+      captureSpy();
+    }, true);
+
+    element = document.getElementById('delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    assert.equals(1, capturePhase);
+    assert.equals(3, bubblePhase);
+    assert.callOrder(captureSpy, bubbleSpy);
+    delegate.off();
+  },
 
 	'tearDown': function() {
 		setupHelper.tearDown();
