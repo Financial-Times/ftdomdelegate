@@ -17,12 +17,17 @@ buster.testCase('Delegate', {
     };
 
     var delegate = new Delegate(document);
+    var windowDelegate = new Delegate(window);
     var spyA = this.spy();
+    var spyB = this.spy();
     delegate.on('scroll', spyA);
+    windowDelegate.on('scroll', spyB);
 
     window.setTimeout(function() {
       assert.calledOnce(spyA);
+      assert.calledOnce(spyB);
       delegate.destroy();
+      windowDelegate.destroy();
 
       callbacks = promise.callbacks || [];
       for (var i = 0, l = callbacks.length; i < l; ++i) {
