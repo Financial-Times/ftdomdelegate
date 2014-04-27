@@ -64,7 +64,9 @@ buster.testCase('Delegate', {
         callbacks[i]();
       }
     }, 100);
-    el.scrollByLines(1);
+    var event = document.createEvent("MouseEvents");
+    event.initMouseEvent('scroll', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    el.dispatchEvent(event);
     return promise;
   },
   'tearDown': function() {
