@@ -23,6 +23,7 @@ buster.testCase('Delegate', {
     delegate.on('scroll', spyA);
     windowDelegate.on('scroll', spyB);
 
+    // Scroll events on some browsers are asynchronous
     window.setTimeout(function() {
       assert.calledOnce(spyA);
       assert.calledOnce(spyB);
