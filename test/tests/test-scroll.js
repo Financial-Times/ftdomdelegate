@@ -38,6 +38,35 @@ buster.testCase('Delegate', {
     window.scrollTo(0, 100);
     return promise;
   },
+  'Test sub-div scrolling': function() {
+    var promise = {
+      then: function (callback) {
+        this.callbacks = this.callbacks || [];
+        this.callbacks.push(callback);
+      }
+    };
+
+    var delegate = new Delegate(document);
+    var el = document.getElementById('el');
+    el.style.height = '100px'
+    el.style.overflow = 'scroll';
+
+    var spyA = this.spy();
+    delegate.on('scroll', '#el', spyA);
+
+    // Scroll events on some browsers are asynchronous
+    window.setTimeout(function() {
+      assert.calledOnce(spyA);
+      delegate.destroy();
+
+      callbacks = promise.callbacks || [];
+      for (var i = 0, l = callbacks.length; i < l; ++i) {
+        callbacks[i]();
+      }
+    }, 100);
+    el.scrollByLines(1);
+    return promise;
+  },
   'tearDown': function() {
     var el = document.getElementById('el');
     el.parentNode.removeChild(el);
