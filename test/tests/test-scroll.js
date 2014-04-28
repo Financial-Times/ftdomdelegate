@@ -48,7 +48,7 @@ buster.testCase('Delegate', {
 
     var delegate = new Delegate(document);
     var el = document.getElementById('el');
-    el.style.height = '100px'
+    el.style.height = '100px';
     el.style.overflow = 'scroll';
 
     var spyA = this.spy();

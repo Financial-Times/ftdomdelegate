@@ -32,7 +32,8 @@
     "grunt-browserify": "1.0.2",
     "grunt-contrib-uglify": "~0.1.2",
     "istanbul": "*",
-    "buster-istanbul": "*"
+    "buster-istanbul": "*",
+    "grunt-contrib-jshint": "~0.10.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/ftdomdelegate"

@@ -1,6 +1,6 @@
 var config = module.exports;
 
-config["DelegateTests"] = {
+config.DelegateTests = {
   rootPath: '../',
   environment: "browser",
   sources: [
