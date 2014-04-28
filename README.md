@@ -6,8 +6,6 @@ Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial T
 
 ## Compatibility ##
 
-[![Browser Support](https://ci.testling.com/ftlabs/ftdomdelegate.png)](https://ci.testling.com/ftlabs/ftdomdelegate)
-
 The library has been deployed as part of the [FT Web App](http://app.ft.com/) and is tried and tested on the following browsers:
 
 * Safari 5 +
