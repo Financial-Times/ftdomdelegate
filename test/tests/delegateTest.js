@@ -248,6 +248,30 @@ buster.testCase('Delegate', {
       assert.match(e, { name: 'TypeError', message: 'Handler must be a type of Function' });
     }
   },
+  'Delegate#once with a selector should only handle once' : function() {
+    var delegate = new Delegate(document);
+    var spyA = this.spy();
+
+    delegate.once('click', '#delegate-test-clickable', spyA);
+
+    var element = document.getElementById('delegate-test-clickable');
+
+    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    assert.calledOnce(spyA);
+  },
+  'Delegate#once with no selector should only handle once' : function() {
+    var delegate = new Delegate(document);
+    var spyA = this.spy();
+
+    delegate.once('click', spyA);
+
+    var element = document.getElementById('delegate-test-clickable');
+
+    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    assert.calledOnce(spyA);
+  },
   'Delegate#off with zero arguments should remove all handlers' : function() {
     var delegate = new Delegate(document);
     var spyA = this.spy(), spyB = this.spy();
