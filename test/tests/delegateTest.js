@@ -248,6 +248,18 @@ buster.testCase('Delegate', {
       assert.match(e, { name: 'TypeError', message: 'Handler must be a type of Function' });
     }
   },
+  'Delegate#once should return the callback it attaches as a listener' : function() {
+    var delegate = new Delegate(document);
+    var spyA = this.spy();
+
+    var cb = delegate.once('click', '#delegate-test-clickable', spyA);
+    delegate.off('click', '#delegate-test-clickable', cb);
+
+    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+
+    refute.calledOnce(spyA);
+  
+  },
   'Delegate#once with a selector should only handle once' : function() {
     var delegate = new Delegate(document);
     var spyA = this.spy();
