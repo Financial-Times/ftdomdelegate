@@ -110,7 +110,7 @@ Code coverage is generated automatically with [istanbul](https://github.com/gotw
 
 ## API ##
 
-### .on(eventType, selector, handler[, useCapture]) ###
+### .on(eventType[, selector], handler[, useCapture]) ###
 
 #### `eventType (string)` ####
 
