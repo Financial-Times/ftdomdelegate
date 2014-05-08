@@ -1,0 +1,7 @@
+{
+  "description": "Create and manage a DOM event delegator",
+  "origamiType": "module",
+  "origamiVersion": 1,
+  "support": "matthew.andrews@ft.com",
+  "supportStatus": "active"
+}
