@@ -3,5 +3,10 @@
   "origamiType": "module",
   "origamiVersion": 1,
   "support": "matthew.andrews@ft.com",
-  "supportStatus": "active"
+  "supportStatus": "active",
+  "browserFeatues": {
+    "required": [
+      "addeventlistener"
+    ]
+  }
 }
