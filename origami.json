@@ -6,7 +6,8 @@
   "supportStatus": "active",
   "browserFeatues": {
     "required": [
-      "addeventlistener"
+      "addeventlistener",
+      "matches"
     ]
   }
 }
