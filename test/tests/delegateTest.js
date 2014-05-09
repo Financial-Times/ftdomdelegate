@@ -41,6 +41,18 @@ setupHelper.fireMouseEvent = function(target, eventName, relatedTarget) {
   }
 };
 
+setupHelper.fireFormEvent = function (target, eventName) {
+  var ev;
+  if (document.createEvent) {
+    ev = document.createEvent('Event');
+    ev.initEvent("focus", true, true);
+    target.dispatchEvent(ev);
+  } else if ( document.createEventObject ) {
+    ev = document.createEventObject();
+    target.fireEvent( 'on' + eventName, ev);
+  }
+};
+
 buster.testCase('Delegate', {
   'setUp': function() {
     setupHelper.setUp();
@@ -516,9 +528,7 @@ buster.testCase('Delegate', {
     spy2 = this.spy();
     delegate.on('focus', 'input', spy);
     element = document.getElementById('js-input');
-    ev = document.createEvent('Event');
-    ev.initEvent("focus", true, true);
-    element.dispatchEvent(ev);
+    setupHelper.fireFormEvent(element, 'focus');
     assert.calledOnce(spy);
   },
 
@@ -530,11 +540,7 @@ buster.testCase('Delegate', {
     spy2 = this.spy();
     delegate.on('blur', 'input', spy);
     element = document.getElementById('js-input');
-
-    ev = document.createEvent('Event');
-    ev.initEvent("blur", true, true);
-    element.dispatchEvent(ev);
-
+    setupHelper.fireFormEvent(element, 'blur');
     assert.calledOnce(spy);
   },
   'Test setting useCapture true false works get attached to capturing and bubbling event handlers, respectively' : function() {
