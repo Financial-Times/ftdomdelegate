@@ -4,12 +4,12 @@ config.DelegateTests = {
   rootPath: '../',
   environment: "browser",
   sources: [
-    "test/helpers/es5-shim.js",
-    "test/helpers/event-listener.js",
+    "test/polyfills/event-listener.js",
+    "test/polyfills/es5-shim.js",
     "build/dom-delegate.js"
   ],
   tests: [
-    "test/tests/*.js"
+    "test/tests/delegateTest.js"
   ],
   extensions: [
     require('buster-istanbul')

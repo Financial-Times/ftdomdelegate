@@ -1,7 +1,9 @@
 // EventListener | MIT/GPL2 | github.com/jonathantneal/EventListener
-
+console.log('evli');
 this.Element && Element.prototype.attachEvent && !Element.prototype.addEventListener && (function () {
+	console.log('evliin');
 	function addToPrototype(name, method) {
+		console.log('evliinin');
 		Window.prototype[name] = HTMLDocument.prototype[name] = Element.prototype[name] = method;
 	}
 
@@ -27,6 +29,7 @@ this.Element && Element.prototype.attachEvent && !Element.prototype.addEventList
 				event.stopPropagation = function () { event.cancelBubble = true };
 				event.target = event.srcElement || target;
 				event.timeStamp = +new Date;
+				event.eventPhase = event.target === event.currentTarget ? 2 : 3;
 
 				// create an cached list of the master events list (to protect this loop from breaking when an event is removed)
 				for (var i = 0, typeListenersCache = [].concat(typeListeners), typeListenerCache, immediatePropagation = true; immediatePropagation && (typeListenerCache = typeListenersCache[i]); ++i) {

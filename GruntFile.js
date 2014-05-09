@@ -28,7 +28,7 @@ module.exports = function(grunt) {
         '*.js',
         'lib/**/*.js',
         'test/*.js',
-        'test/**/*.js',
+        'test/tests/*.js',
         '*.json'
       ]
     }
