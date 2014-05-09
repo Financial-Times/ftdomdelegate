@@ -27,7 +27,6 @@ this.Element && Element.prototype.attachEvent && !Element.prototype.addEventList
 				event.stopPropagation = function () { event.cancelBubble = true };
 				event.target = event.srcElement || target;
 				event.timeStamp = +new Date;
-				event.eventPhase = event.target === event.currentTarget ? 2 : 3;
 
 				// create an cached list of the master events list (to protect this loop from breaking when an event is removed)
 				for (var i = 0, typeListenersCache = [].concat(typeListeners), typeListenerCache, immediatePropagation = true; immediatePropagation && (typeListenerCache = typeListenersCache[i]); ++i) {
