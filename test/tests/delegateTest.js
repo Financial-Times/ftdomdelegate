@@ -13,6 +13,9 @@ setupHelper.setUp = function() {
     + '<div id="container2">'
       + '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
     + '</div>'
+    + '<svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">'
+      + '<circle id="svg-delegate-test-clickable" cx="60" cy="60" r="50"/>'
+    + '</svg>'
   );
 };
 
@@ -100,6 +103,23 @@ buster.testCase('Delegate', {
     });
 
     element = document.getElementById('delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    assert.calledOnce(spy);
+
+    delegate.off();
+  },
+  'Tag selectors are supported for svg' : function() {
+    var delegate, spy, element;
+
+    delegate = new Delegate(document);
+    spy = this.spy();
+    delegate.on('click', 'circle', function (event) {
+      spy();
+      return false;
+    });
+
+    element = document.getElementById('svg-delegate-test-clickable');
     element.dispatchEvent(setupHelper.getMouseEvent('click'));
 
     assert.calledOnce(spy);
