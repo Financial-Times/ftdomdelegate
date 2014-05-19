@@ -137,7 +137,7 @@ buster.testCase('Delegate', {
     });
 
     element = document.getElementById('svg-delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
