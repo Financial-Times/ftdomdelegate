@@ -45,7 +45,7 @@ setupHelper.fireFormEvent = function (target, eventName) {
   var ev;
   if (document.createEvent) {
     ev = document.createEvent('Event');
-    ev.initEvent("focus", true, true);
+    ev.initEvent(eventName, true, true);
     target.dispatchEvent(ev);
   } else if ( document.createEventObject ) {
     ev = document.createEventObject();
