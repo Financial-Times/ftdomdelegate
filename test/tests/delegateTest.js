@@ -431,10 +431,8 @@ buster.testCase('Delegate', {
     delegate.on('click', '#delegate-test-clickable', spy);
 
     element = document.getElementById('delegate-test-clickable');
-    textNode = document.createTextNode('Test text');
-    element.appendChild(textNode);
 
-    setupHelper.fireMouseEvent(textNode, 'click');
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.called(spy);
 
