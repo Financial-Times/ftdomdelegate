@@ -20,7 +20,7 @@ The library has been deployed as part of the [FT Web App](http://app.ft.com/) an
 * Android Browser on Android 2 +
 * PlayBook OS 1 +
 
-When combined with a good [event listener polyfill](https://github.com/jonathantneal/EventListener) the library can be used in ie8 for events that bubble natively.
+When combined with a good [event listener polyfill](https://github.com/jonathantneal/EventListener) the library can be used in Internet Explorer 8 for events that bubble natively.
 
 ## Installation ##
 
