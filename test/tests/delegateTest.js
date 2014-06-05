@@ -7,7 +7,7 @@ var setupHelper = {};
 setupHelper.setUp = function() {
   document.body.insertAdjacentHTML('beforeend',
     '<div id="container1">'
-     + '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
+    + '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
       + '<div id="delegate-test-clickable" class="delegate-test-clickable">'
         + '<div id="delegate-test-inner-clickable"></div>'
       + '</div>'
