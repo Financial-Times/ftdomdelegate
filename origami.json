@@ -1,0 +1,16 @@
+{
+  "description": "Create and manage a DOM event delegator",
+  "origamiType": "module",
+  "origamiVersion": 1,
+  "support": "matthew.andrews@ft.com",
+  "supportStatus": "active",
+  "ci": {
+    "travis": "https://api.travis-ci.org/repos/ftlabs/ftdomdelegate/builds.json"
+  },
+  "browserFeatues": {
+    "required": [
+      "addeventlistener",
+      "matches"
+    ]
+  }
+}

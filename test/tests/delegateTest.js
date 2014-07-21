@@ -31,12 +31,29 @@ setupHelper.tearDown = function() {
   }
 };
 
-setupHelper.getMouseEvent = function(eventName, relatedTarget) {
+setupHelper.fireMouseEvent = function(target, eventName, relatedTarget) {
   // TODO: Extend this to be slightly more configurable when initialising the event.
-  var event = document.createEvent("MouseEvents");
-  event.initMouseEvent(eventName, true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, relatedTarget || null);
+  var ev;
+  if (document.createEvent) {
+    ev = document.createEvent("MouseEvents");
+    ev.initMouseEvent(eventName, true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, relatedTarget || null);
+    target.dispatchEvent(ev);
+  } else if ( document.createEventObject ) {
+    ev = document.createEventObject();
+    target.fireEvent( 'on' + eventName, ev);
+  }
+};
 
-  return event;
+setupHelper.fireFormEvent = function (target, eventName) {
+  var ev;
+  if (document.createEvent) {
+    ev = document.createEvent('Event');
+    ev.initEvent(eventName, true, true);
+    target.dispatchEvent(ev);
+  } else if ( document.createEventObject ) {
+    ev = document.createEventObject();
+    target.fireEvent( 'on' + eventName, ev);
+  }
 };
 
 buster.testCase('Delegate', {
@@ -52,14 +69,14 @@ buster.testCase('Delegate', {
 
     var element = document.getElementById("delegate-test-clickable");
 
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     assert.calledOnce(spyB);
 
     delegate.off("click", '#delegate-test-clickable');
 
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     assert.calledOnce(spyB);
@@ -72,7 +89,7 @@ buster.testCase('Delegate', {
     delegate.on('click', '#delegate-test-clickable', spy);
 
     element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -88,7 +105,7 @@ buster.testCase('Delegate', {
     delegate.destroy();
 
     element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     refute.called(spy);
   },
@@ -103,7 +120,7 @@ buster.testCase('Delegate', {
     });
 
     element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -120,7 +137,7 @@ buster.testCase('Delegate', {
     });
 
     element = document.getElementById('svg-delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -134,7 +151,7 @@ buster.testCase('Delegate', {
     delegate.on('click', '.delegate-test-clickable', spy);
 
     element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -150,7 +167,7 @@ buster.testCase('Delegate', {
     delegate.on('click', 'div.delegate-test-clickable + #another-delegate-test-clickable', spyB);
 
     element = document.getElementById('another-delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spyA);
     assert.calledOnce(spyB);
@@ -165,7 +182,7 @@ buster.testCase('Delegate', {
     delegate.on("click", '#delegate-test-clickable', spyB);
 
     var element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     assert.calledOnce(spyB);
@@ -186,7 +203,7 @@ buster.testCase('Delegate', {
     delegate.on("click", '#delegate-test-clickable', spyB);
 
     var element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     refute.calledOnce(spyB);
@@ -210,7 +227,7 @@ buster.testCase('Delegate', {
     });
 
     var element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     delegate.off();
@@ -229,7 +246,7 @@ buster.testCase('Delegate', {
     delegateB.on("click", '#delegate-test-clickable', spyB);
 
     var element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     refute.calledOnce(spyB);
@@ -243,7 +260,7 @@ buster.testCase('Delegate', {
 
     delegate.on("click", "#delegate-test-clickable", spy);
 
-    document.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(document, "click");
 
     refute.called(spy);
 
@@ -252,7 +269,7 @@ buster.testCase('Delegate', {
     delegate.on("click", "#another-delegate-test-clickable", spyA);
 
     var element = document.getElementById("another-delegate-test-clickable");
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
 
     assert.calledOnce(spyA);
     refute.calledOnce(spy);
@@ -280,8 +297,8 @@ buster.testCase('Delegate', {
     var element = document.getElementById('delegate-test-clickable'),
       element2 = document.getElementById('another-delegate-test-clickable');
 
-    element.dispatchEvent(setupHelper.getMouseEvent("click"));
-    element2.dispatchEvent(setupHelper.getMouseEvent("click"));
+    setupHelper.fireMouseEvent(element, "click");
+    setupHelper.fireMouseEvent(element2, "click");
 
     refute.called(spyA);
     refute.called(spyB);
@@ -289,8 +306,8 @@ buster.testCase('Delegate', {
     spyA.reset();
     spyB.reset();
 
-    element.dispatchEvent(setupHelper.getMouseEvent("mouseover", document));
-    element2.dispatchEvent(setupHelper.getMouseEvent("mouseover", document));
+    setupHelper.fireMouseEvent(element, "mouseover", document);
+    setupHelper.fireMouseEvent(element2, "mouseover", document);
 
     refute.called(spyA);
     refute.called(spyB);
@@ -307,7 +324,7 @@ buster.testCase('Delegate', {
     var element = document.getElementById('delegate-test-clickable');
 
     refute.exception(function() {
-      element.dispatchEvent(setupHelper.getMouseEvent('click'));
+      setupHelper.fireMouseEvent(element, 'click');
     });
 
     assert.called(spyA);
@@ -324,7 +341,7 @@ buster.testCase('Delegate', {
 
     var element = document.getElementById('delegate-test-clickable');
 
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.called(spyA);
     refute.called(spyB);
@@ -338,7 +355,7 @@ buster.testCase('Delegate', {
       spyA();
     });
 
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     refute.called(spyA);
     delegate.off();
   },
@@ -351,9 +368,9 @@ buster.testCase('Delegate', {
       spyA();
     });
 
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     delegate.root(document);
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     assert.calledOnce(spyA);
     delegate.off();
   },
@@ -367,7 +384,7 @@ buster.testCase('Delegate', {
     });
 
     delegate.root();
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     refute.called(spyA);
     delegate.off();
   },
@@ -384,7 +401,7 @@ buster.testCase('Delegate', {
     });
 
     // Click the element in the second container
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     // Ensure no click was caught
     refute.called(spyA);
@@ -393,7 +410,7 @@ buster.testCase('Delegate', {
     delegate.root(document.getElementById('container2'));
 
     // Click the element in the second container again
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     // Ensure the click was caught
     assert.calledOnce(spyA);
@@ -412,7 +429,7 @@ buster.testCase('Delegate', {
     textNode = document.createTextNode('Test text');
     element.appendChild(textNode);
 
-    textNode.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(textNode, 'click');
 
     assert.called(spy);
 
@@ -434,10 +451,8 @@ buster.testCase('Delegate', {
     delegate.on('click', '#delegate-test-clickable', spy);
 
     element = document.getElementById('delegate-test-clickable');
-    textNode = document.createTextNode('Test text');
-    element.appendChild(textNode);
 
-    textNode.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.called(spy);
 
@@ -453,7 +468,7 @@ buster.testCase('Delegate', {
     delegate.on('click', null, spy);
 
     element = document.body;
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -469,7 +484,7 @@ buster.testCase('Delegate', {
     delegate.on('click', spy);
 
     element = document.body;
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
 
@@ -486,9 +501,9 @@ buster.testCase('Delegate', {
     delegate.on('click', spy);
     delegate.on('click', '#element-in-container2-test-clickable', spy2);
 
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     delegate.off('click', spy);
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
     assert.calledTwice(spy2);
@@ -504,7 +519,7 @@ buster.testCase('Delegate', {
     delegate.root(document.body).on('click', null, spy);
 
     element = document.body;
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     assert.calledOnce(spy);
     delegate.off();
   },
@@ -518,7 +533,7 @@ buster.testCase('Delegate', {
     delegate.root(document.body);
 
     element = document.body;
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
     assert.calledOnce(spy);
     delegate.off();
   },
@@ -531,9 +546,7 @@ buster.testCase('Delegate', {
     spy2 = this.spy();
     delegate.on('focus', 'input', spy);
     element = document.getElementById('js-input');
-    ev = document.createEvent('Event');
-    ev.initEvent("focus", true, true);
-    element.dispatchEvent(ev);
+    setupHelper.fireFormEvent(element, 'focus');
     assert.calledOnce(spy);
   },
 
@@ -545,11 +558,7 @@ buster.testCase('Delegate', {
     spy2 = this.spy();
     delegate.on('blur', 'input', spy);
     element = document.getElementById('js-input');
-
-    ev = document.createEvent('Event');
-    ev.initEvent("blur", true, true);
-    element.dispatchEvent(ev);
-
+    setupHelper.fireFormEvent(element, 'blur');
     assert.calledOnce(spy);
   },
   'Test setting useCapture true false works get attached to capturing and bubbling event handlers, respectively' : function() {
@@ -569,7 +578,7 @@ buster.testCase('Delegate', {
     }, true);
 
     var element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.equals(1, capturePhase);
     assert.equals(3, bubblePhase);
@@ -579,7 +588,7 @@ buster.testCase('Delegate', {
     delegate.off();
 
     element = document.getElementById('delegate-test-clickable');
-    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+    setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(captureSpy);
     assert.calledOnce(bubbleSpy);
