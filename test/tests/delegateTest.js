@@ -155,6 +155,30 @@ buster.testCase('Delegate', {
 
     delegate.off();
   },
+  'Scoped selector changing root' : function() {
+    var delegate, spy, element;
+    var container1El = document.getElementById("container1");
+    var container2El = document.getElementById("container2");
+
+    spy = this.spy();
+
+    delegate = new Delegate(container1El);
+    delegate.on('click', '> .delegate-test-clickable', function (event) {
+      spy();
+    });
+
+    element = container1El.querySelector('.delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    delegate.root(container2El);
+
+    element = container2El.querySelector('.delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    assert.calledTwice(spy);
+
+    delegate.off();
+  },
   'Class name selectors are supported' : function() {
     var delegate, spy, element;
 
