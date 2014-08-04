@@ -118,13 +118,13 @@ Code coverage is generated automatically with [istanbul](https://github.com/gotw
 
 The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `click`.
 
-#### `selector (string|function)` ####
+#### `selector (string)` ####
 
 Any kind of valid CSS selector supported by [`matchesSelector`](http://caniuse.com/matchesselector). Some selectors, like `#id` or `tag` will use optimized functions internally that check for straight matches between the ID or tag name of elements.
 
 `null` is also accepted and will match the root element set by `root()`.  Passing a handler function into `.on`'s second argument is equivalent to `.on(eventType, null, handler)`.
 
-#### `handler (function|boolean)` ####
+#### `handler (function)` ####
 
 Function that will handle the specified event on elements matching the given selector.  The function will receive two arguments: the native event object and the target element, in that order.
 
@@ -140,13 +140,13 @@ Calling `off` with no arguments will remove all registered listeners, effectivel
 
 Remove handlers for events matching this type considering the other parameters.
 
-#### `selector (string|function)` ####
+#### `selector (string)` ####
 
 Only remove listeners registered with the given selector, among the other arguments.
 
 If null passed listeners registered to the root element will be removed.  Passing in a function into `off`'s second parameter is equivalent to `.off(eventType, null, handler[, useCapture])` (the third parameter will be ignored).
 
-#### `handler (function|boolean)` ####
+#### `handler (function)` ####
 
 Only remove listeners registered with the given handler function, among the other arguments.  If not provided, remove all handlers.
 
