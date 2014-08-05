@@ -42,7 +42,7 @@ Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (N
 
 ## Usage ##
 
-
+The library is written in CommonJS and so can either be `require` in or the prebuilt wzrd.in version can be used, which makes the API available via `window.domDelegate.Delegate`.
 
 ```js
 var delegate, Delegate, myDel;
@@ -61,7 +61,6 @@ myDel = new Delegate(document.body);
 // Or:-
 delegate = require('dom-delegate');
 myDel = delegate(document.body);
-
 ```
 
 The script must be loaded prior to instantiating a Delegate object.
