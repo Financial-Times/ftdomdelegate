@@ -24,6 +24,8 @@ When combined with a good [event listener polyfill](https://github.com/jonathant
 
 ## Installation ##
 
+Get the [browserify](http://browserify.org/)-able source from a package manager:
+
 ```
 npm install dom-delegate
 ```
@@ -36,7 +38,7 @@ bower install dom-delegate
 
 or
 
-Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).
+Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (Note: this exposes the API via `window.domDelegate.Delegate`)  
 
 ## Usage ##
 
