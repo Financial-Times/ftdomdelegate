@@ -42,6 +42,28 @@ Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (N
 
 ## Usage ##
 
+
+
+```js
+var delegate, Delegate, myDel;
+
+// If using the wzrd.in pre-built javascript, either:-
+Delegate = domDelegate.Delegate
+myDel = new Delegate(document.body);
+
+// Or:-
+myDel = domDelegate(document.body);
+
+// If requiring the module via CommonJS, either:-
+Delegate = require('dom-delegate').Delegate;
+myDel = new Delegate(document.body);
+
+// Or:-
+delegate = require('dom-delegate');
+myDel = delegate(document.body);
+
+```
+
 The script must be loaded prior to instantiating a Delegate object.
 
 To instantiate Delegate on the `body` and listen to some events:
