@@ -9,7 +9,6 @@
   },
   "browserFeatues": {
     "required": [
-      "addeventlistener",
       "matches"
     ]
   }
