@@ -139,7 +139,7 @@ Code coverage is generated automatically with [istanbul](https://github.com/gotw
 
 #### `eventType (string)` ####
 
-The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error` or `click`.
+The event to listen for e.g. `mousedown`, `mouseup`, `mouseout`, `error`, `click`, etc.
 
 #### `selector (string)` ####
 
