@@ -1,6 +1,9 @@
 /*jshint laxbreak:true*/
 
-/*global buster, assert, refute, Delegate*/
+/*global buster, Delegate*/
+
+var assert = buster.referee.assert;
+var refute = buster.referee.refute;
 
 var setupHelper = {};
 
@@ -592,6 +595,63 @@ buster.testCase('Delegate', {
 
     assert.calledOnce(captureSpy);
     assert.calledOnce(bubbleSpy);
+  },
+  'Delegate instances on window catch events when bubbled from the body' : function() {
+    var delegate, spy;
+
+    delegate = new Delegate(window);
+    spy = this.spy();
+
+    delegate.on('click', spy);
+
+    setupHelper.fireMouseEvent(document.body, 'click');
+
+    assert.calledOnce(spy);
+
+    delegate.off();
+  },
+  'Delegate instances on window catch events when bubbled from the document' : function() {
+    var delegate, spy;
+
+    delegate = new Delegate(window);
+    spy = this.spy();
+
+    delegate.on('click', spy);
+
+    setupHelper.fireMouseEvent(document, 'click');
+
+    // assert.calledOnce(spy); // "Invalid Argument" in IE 9
+    assert(spy.callCount === 1); // Workaround for Buster.js IE 9 error
+
+    delegate.off();
+  },
+  'Delegate instances on window catch events when bubbled from the <html> element' : function() {
+    var delegate, spy;
+
+    delegate = new Delegate(window);
+    spy = this.spy();
+
+    delegate.on('click', spy);
+
+    setupHelper.fireMouseEvent(document.documentElement, 'click');
+
+    assert.calledOnce(spy);
+
+    delegate.off();
+  },
+  'Delegate instances on window cause events when dispatched directly on window' : function() {
+    var delegate, spy;
+
+    delegate = new Delegate(window);
+    spy = this.spy();
+
+    delegate.on('click', spy);
+
+    setupHelper.fireMouseEvent(window, 'click');
+
+    assert.calledOnce(spy);
+
+    delegate.off();
   },
 
   'tearDown': function() {
