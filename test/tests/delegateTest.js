@@ -218,8 +218,15 @@ buster.testCase('Delegate', {
     delegate.on("click", '#delegate-test-clickable', function(event) {
       spyA();
 
+      // event.defaultPrevented appears to have issues in IE so just mock
+      // preventDefault instead.
+      var defaultPrevented;
+      event.preventDefault = function() {
+        defaultPrevented = true;
+      };
+
       setTimeout(function() {
-        assert.equals(event.defaultPrevented, true);
+        assert.equals(defaultPrevented, true);
         done();
       }, 0);
 
