@@ -6,21 +6,18 @@ module.exports = function(grunt) {
 
     buster: {},
 
-    browserify: {
-      build: {
-        src: 'lib/delegate.js',
-        dest: 'build/<%= pkg.name %>.js'
-      },
-      options: {
-        standalone: 'Delegate'
-      }
-    },
-
     uglify: {
        build: {
-         src: 'build/<%= pkg.name %>.js',
+         src: 'lib/delegate.js',
          dest: 'build/<%= pkg.name %>.min.js'
        }
+    },
+
+    copy: {
+      main: {
+        src: 'lib/delegate.js',
+        dest: 'build/<%= pkg.name %>.js'
+      }
     },
 
     jshint: {
@@ -30,16 +27,19 @@ module.exports = function(grunt) {
         'test/*.js',
         'test/tests/*.js',
         '*.json'
-      ]
+      ],
+      options: {
+        'predef': ['define']
+      }
     }
 
   });
 
   grunt.loadNpmTasks('grunt-buster');
-  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task.
-  grunt.registerTask('default', ['browserify', 'uglify', 'jshint']);
+  grunt.registerTask('default', ['uglify', 'jshint', 'copy']);
 };

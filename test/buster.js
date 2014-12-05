@@ -10,7 +10,7 @@ config.DelegateTests = {
     // "https://raw.githubusercontent.com/jonathantneal/EventListener/master/EventListener.js",
     // "http://cdnjs.cloudflare.com/ajax/libs/es5-shim/2.3.0/es5-shim.min.js",
     
-    "build/dom-delegate.js"
+    "lib/delegate.js"
   ],
   tests: [
     "test/tests/delegateTest.js"

@@ -8,7 +8,7 @@
     "Sam Giles",
     "Matt Andrews"
   ],
-  "main": "lib/index.js",
+  "main": "lib/delegate.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/ftlabs/ftdomdelegate.git"
@@ -29,11 +29,11 @@
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.8",
     "grunt-buster": "~0.1.2",
-    "grunt-browserify": "1.0.2",
     "grunt-contrib-uglify": "~0.1.2",
     "istanbul": "*",
     "buster-istanbul": "*",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-copy": "~0.7.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/ftdomdelegate"
