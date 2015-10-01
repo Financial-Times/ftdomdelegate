@@ -1,5 +1,5 @@
 {
-  "name": "dom-delegate",
+  "name": "ftdomelegate",
   "description": "Create and manage a DOM event delegator.",
   "main": "lib/delegate.js",
   "ignore": ["test", "GruntFile.js", ".npmignore", ".gitignore", "README.md", "component.json", "package.json"],
