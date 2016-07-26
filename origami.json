@@ -1,8 +1,9 @@
 {
   "description": "Create and manage a DOM event delegator",
   "origamiType": "module",
+  "origamiGroup": "utilities",
   "origamiVersion": 1,
-  "support": "matthew.andrews@ft.com",
+  "support": "https://github.com/ftlabs/ftdomdelegate/issues",
   "supportStatus": "active",
   "ci": {
     "travis": "https://api.travis-ci.org/repos/ftlabs/ftdomdelegate/builds.json"
