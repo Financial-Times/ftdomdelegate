@@ -1,8 +1,11 @@
 /*jshint laxbreak:true*/
 
-/*global buster, assert, refute, Delegate*/
+/*global buster, Delegate*/
 
 var setupHelper = {};
+
+var assert = buster.assert;
+var refute = buster.refute;
 
 setupHelper.setUp = function() {
   document.body.insertAdjacentHTML('beforeend',
