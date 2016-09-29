@@ -76,7 +76,7 @@ function handleTouchMove(event) {
   // Do some other things
 }
 
-window.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var delegate = new Delegate(document.body);
   delegate.on('click', 'button', handleButtonClicks);
 
@@ -84,7 +84,7 @@ window.addEventListener('load', function() {
   // events that reach the body
   delegate.on('touchmove', handleTouchMove);
 
-}, false);
+});
 ```
 
 A cool trick to handle images that fail to load:
@@ -94,10 +94,10 @@ function handleImageFail() {
   this.style.display = 'none';
 }
 
-window.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var delegate = new Delegate(document.body);
   delegate.on('error', 'img', handleImageFail);
-}, false);
+});
 ```
 
 Note: as of 0.1.2 you do not need to provide a DOM element at the point of instantiation, it can be set later via the `root` method.
