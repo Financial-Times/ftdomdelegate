@@ -30,7 +30,7 @@ For older browsers (IE8) you'll need the following polyfills
 
 The easiest way is to include the following script tag and let [Polyfill.io](https://Polyfill.io) work its magic
 
-```
+```js
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Event,Array.prototype.map,Function.prototype.bind,document.querySelector,Element.prototype.matches"></script>
 ```
 
