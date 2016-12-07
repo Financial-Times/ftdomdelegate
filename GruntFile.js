@@ -12,7 +12,9 @@ module.exports = function(grunt) {
         dest: 'build/<%= pkg.name %>.js'
       },
       options: {
-        standalone: 'Delegate'
+        browserifyOptions: {
+          standalone: 'Delegate'
+        }
       }
     },
 

@@ -17,7 +17,7 @@
     "node": "*"
   },
   "scripts": {
-    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/buster test"
+    "test": "./node_modules/.bin/grunt && ./node_modules/.bin/buster-test"
   },
   "keywords": [
     "delegate",
@@ -25,15 +25,15 @@
     "events"
   ],
   "devDependencies": {
-    "buster": "~0.6.2",
-    "grunt": "~0.4.1",
-    "grunt-cli": "~0.1.8",
-    "grunt-buster": "~0.1.2",
-    "grunt-browserify": "1.0.2",
-    "grunt-contrib-uglify": "~0.1.2",
+    "buster": "~0.7.18",
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2.0",
+    "grunt-buster": "~0.4.2",
+    "grunt-browserify": "5.0.0",
+    "grunt-contrib-uglify": "~2.0.0",
     "istanbul": "*",
     "buster-istanbul": "*",
-    "grunt-contrib-jshint": "~0.10.0"
+    "grunt-contrib-jshint": "~1.0.0"
   },
   "license": "MIT",
   "homepage": "https://github.com/ftlabs/ftdomdelegate"
