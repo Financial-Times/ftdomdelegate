@@ -12,6 +12,7 @@ setupHelper.setUp = function() {
     '<div id="container1">'
       + '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
       + '<div id="another-delegate-test-clickable"><input id="js-input" /></div>'
+      + '<div id="custom-event"></div>'
     + '</div>'
     + '<div id="container2">'
       + '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
@@ -57,6 +58,13 @@ setupHelper.fireFormEvent = function (target, eventName) {
     ev = document.createEventObject();
     target.fireEvent( 'on' + eventName, ev);
   }
+};
+
+setupHelper.fireCustomEvent = function(target, eventName) {
+  var ev = new Event(eventName, {
+    bubbles: true
+  });
+  target.dispatchEvent(ev);
 };
 
 buster.testCase('Delegate', {
@@ -602,6 +610,25 @@ buster.testCase('Delegate', {
 
     assert.calledOnce(captureSpy);
     assert.calledOnce(bubbleSpy);
+  },
+
+  'Custom events are supported': function() {
+    var delegate = new Delegate(document.body);
+    var spyOnContainer = this.spy();
+    var spyOnElement = this.spy();
+
+    delegate.on('foobar', '#container1', function(event) {
+      spyOnContainer();
+    });
+
+    delegate.on('foobar', '#custom-event', function(event) {
+      spyOnElement();
+    });
+
+    setupHelper.fireCustomEvent(document.getElementById("custom-event"), 'foobar');
+
+    assert.calledOnce(spyOnContainer);
+    assert.calledOnce(spyOnElement);
   },
 
   'tearDown': function() {
