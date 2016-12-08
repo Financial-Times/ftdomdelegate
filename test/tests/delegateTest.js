@@ -10,7 +10,9 @@ var refute = buster.refute;
 setupHelper.setUp = function() {
   document.body.insertAdjacentHTML('beforeend',
     '<div id="container1">'
-      + '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
+      + '<div id="delegate-test-clickable" class="delegate-test-clickable">'
+        + '<div id="delegate-test-inner-clickable"></div>'
+      + '</div>'
       + '<div id="another-delegate-test-clickable"><input id="js-input" /></div>'
       + '<div id="custom-event"></div>'
     + '</div>'
@@ -151,6 +153,57 @@ buster.testCase('Delegate', {
     setupHelper.fireMouseEvent(element, 'click');
 
     assert.calledOnce(spy);
+
+    delegate.off();
+  },
+  'Scoped direct children selectors are supported' : function() {
+    var delegate, spy1, spy2, element;
+    var containerEl = document.getElementById("container1");
+
+    spy1 = this.spy();
+    spy2 = this.spy();
+
+    delegate = new Delegate(containerEl);
+    delegate.on('click', '> #delegate-test-clickable', function (event) {
+      spy1();
+    });
+
+    delegate.on('click', '> #delegate-test-inner-clickable', function (event) {
+      spy2();
+    });
+
+    element = document.getElementById('delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    element = document.getElementById('delegate-test-inner-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    assert.calledTwice(spy1);
+    assert.calledOnce(spy2);
+
+    delegate.off();
+  },
+  'Scoped selector changing root' : function() {
+    var delegate, spy, element;
+    var container1El = document.getElementById("container1");
+    var container2El = document.getElementById("container2");
+
+    spy = this.spy();
+
+    delegate = new Delegate(container1El);
+    delegate.on('click', '> .delegate-test-clickable', function (event) {
+      spy();
+    });
+
+    element = container1El.querySelector('.delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    delegate.root(container2El);
+
+    element = container2El.querySelector('.delegate-test-clickable');
+    element.dispatchEvent(setupHelper.getMouseEvent('click'));
+
+    assert.calledTwice(spy);
 
     delegate.off();
   },
