@@ -2,6 +2,6 @@
   "name": "dom-delegate",
   "description": "Create and manage a DOM event delegator.",
   "main": "lib/delegate.js",
-  "ignore": ["test", "GruntFile.js", ".npmignore", ".gitignore", "README.md", "component.json", "package.json"],
+  "ignore": ["test", "GruntFile.js", ".npmignore", ".gitignore", "README.md", "component.json"],
   "license": "MIT"
 }
