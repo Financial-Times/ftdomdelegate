@@ -1,6 +1,6 @@
 # ftdomdelegate [![Build Status](https://travis-ci.org/ftlabs/ftdomdelegate.svg?branch=master)](https://travis-ci.org/ftlabs/ftdomdelegate)
 
-FT's dom delegate library is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
+FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
 FT DOM Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
 
