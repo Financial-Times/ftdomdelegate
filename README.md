@@ -49,24 +49,11 @@ or
 bower install ftdomdelegate
 ```
 
-or
-
-Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (Note: this exposes the API via `window.domDelegate.Delegate`)
-
 ## Usage ##
 
-The library is written in CommonJS and so can either be `require` in or the prebuilt wzrd.in version can be used, which makes the API available via `window.domDelegate.Delegate`.
+The library is written in CommonJS and so can be `require` in.
 
 ```js
-var delegate, Delegate, myDel;
-
-// If using the wzrd.in pre-built javascript, either:-
-Delegate = domDelegate.Delegate
-myDel = new Delegate(document.body);
-
-// Or:-
-myDel = domDelegate(document.body);
-
 // If requiring the module via CommonJS, either:-
 Delegate = require('ftdomdelegate').Delegate;
 myDel = new Delegate(document.body);
