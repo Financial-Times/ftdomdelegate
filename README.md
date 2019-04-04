@@ -40,39 +40,26 @@ The easiest way is to include the following script tag and let [Polyfill.io](htt
 Get the [browserify](http://browserify.org/)-able source from a package manager:
 
 ```
-npm install dom-delegate
+npm install ftdomdelegate
 ```
 
 or
 
 ```
-bower install dom-delegate
+bower install ftdomdelegate
 ```
-
-or
-
-Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (Note: this exposes the API via `window.domDelegate.Delegate`)  
 
 ## Usage ##
 
-The library is written in CommonJS and so can either be `require` in or the prebuilt wzrd.in version can be used, which makes the API available via `window.domDelegate.Delegate`.
+The library is written in CommonJS and so can be `require` in.
 
 ```js
-var delegate, Delegate, myDel;
-
-// If using the wzrd.in pre-built javascript, either:-
-Delegate = domDelegate.Delegate
-myDel = new Delegate(document.body);
-
-// Or:-
-myDel = domDelegate(document.body);
-
 // If requiring the module via CommonJS, either:-
-Delegate = require('dom-delegate').Delegate;
+Delegate = require('ftdomdelegate').Delegate;
 myDel = new Delegate(document.body);
 
 // Or:-
-delegate = require('dom-delegate');
+delegate = require('ftdomdelegate');
 myDel = delegate(document.body);
 ```
 
