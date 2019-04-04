@@ -1,1 +1,5 @@
-/test/
+.github/
+test/
+.travis.yml
+bower.json
+GruntFile.js
