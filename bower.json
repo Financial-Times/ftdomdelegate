@@ -2,6 +2,6 @@
   "name": "ftdomdelegate",
   "description": "Create and manage a DOM event delegator.",
   "main": "lib/delegate.js",
-  "ignore": ["test", "GruntFile.js", ".npmignore", ".gitignore", "README.md", "component.json"],
+  "ignore": [".github", "test", ".npmignore", ".gitignore", "GruntFile.js", "package.json"],
   "license": "MIT"
 }
