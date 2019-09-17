@@ -1,7 +1,3 @@
-/*jshint browser:true, node:true*/
-
-'use strict';
-
 /**
  * @preserve Create and manage a DOM event delegator.
  *
@@ -9,10 +5,10 @@
  * @copyright The Financial Times Limited [All Rights Reserved]
  * @license MIT License (see LICENSE.txt)
  */
-var Delegate = require('./delegate');
+const Delegate = require('./src/js/delegate');
 
 module.exports = function(root) {
-  return new Delegate(root);
+	return new Delegate(root);
 };
 
 module.exports.Delegate = Delegate;
