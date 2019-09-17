@@ -190,3 +190,13 @@ Short hand for off() and root(), ie both with no parameters. Used to reset the d
 ## Credits and collaboration ##
 
 The developers of ftdomdelegate are [Matthew Andrews](https://twitter.com/andrewsmatt) and [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia). Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request.
+
+## Migration guide
+
+State | Major Version | Last Minor Release | Migration guide |
+:---: | :---: | :---: | :---:
+✨ active | 4 | N/A | [migrate to v4](MIGRATION.md#migrating-from-v3-to-v4) |
+⚠ maintained | 3 | 3.0.2 | [migrate to v3](MIGRATION.md#migrating-from-v2-to-v3) |
+╳ deprecated | 2 | 2.2.1 | N/A |
+╳ deprecated | 1 | 1.0.6 | N/A |
+
