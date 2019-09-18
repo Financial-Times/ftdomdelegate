@@ -26,6 +26,9 @@ function Delegate(root) {
 
 	/** @type function() */
 	this.handle = Delegate.prototype.handle.bind(this);
+
+	// Cache of event listeners removed during an event cycle
+	this._removedListeners = [];
 }
 
 /**
@@ -243,6 +246,7 @@ Delegate.prototype.off = function (eventType, selector, handler, useCapture) {
 		listener = listenerList[i];
 
 		if ((!selector || selector === listener.selector) && (!handler || handler === listener.handler)) {
+			this._removedListeners.push(listener);
 			listenerList.splice(i, 1);
 		}
 	}
@@ -290,6 +294,11 @@ Delegate.prototype.handle = function (event) {
 		target = target.parentNode;
 	}
 
+	// Handle SVG <use> elements in IE
+	if (target.correspondingUseElement) {
+		target = target.correspondingUseElement;
+	}
+
 	root = this.rootElement;
 
 	phase = event.eventPhase || (event.target !== event.currentTarget ? 3 : 2);
@@ -312,6 +321,8 @@ Delegate.prototype.handle = function (event) {
 			break;
 	}
 
+	let toFire = [];
+
 	// Need to continuously check
 	// that the specific list is
 	// still populated in case one
@@ -330,23 +341,22 @@ Delegate.prototype.handle = function (event) {
 				break;
 			}
 
+			if (
+				target.tagName &&
+				["button", "input", "select", "textarea"].indexOf(target.tagName.toLowerCase()) > -1 &&
+				target.hasAttribute("disabled")
+			) {
+				// Remove things that have previously fired
+				toFire = [];
+			}
 			// Check for match and fire
 			// the event if there's one
 			//
 			// TODO:MCG:20120117: Need a way
 			// to check if event#stopImmediatePropagation
 			// was called. If so, break both loops.
-			if (listener.matcher.call(target, listener.matcherParam, target)) {
-				returned = this.fire(event, target, listener);
-			}
-
-			// Stop propagation to subsequent
-			// callbacks if the callback returned
-			// false
-			if (returned === false) {
-				event[eventIgnore] = true;
-				event.preventDefault();
-				return;
+			else if (listener.matcher.call(target, listener.matcherParam, target)) {
+				toFire.push([event, target, listener]);
 			}
 		}
 
@@ -360,8 +370,37 @@ Delegate.prototype.handle = function (event) {
 		}
 
 		l = listenerList.length;
-		target = target.parentElement;
+
+		// Fall back to parentNode since SVG children have no parentElement in IE
+		target = target.parentElement || target.parentNode;
+
+		// Do not traverse up to document root when using parentNode, though
+		if (target instanceof HTMLDocument) {
+			break;
+		}
 	}
+
+	let ret;
+
+	for (i = 0; i < toFire.length; i++) {
+		// Has it been removed during while the event function was fired
+		if (this._removedListeners.indexOf(toFire[i][2]) > -1) {
+			continue;
+		}
+		returned = this.fire.apply(this, toFire[i]);
+
+		// Stop propagation to subsequent
+		// callbacks if the callback returned
+		// false
+		if (returned === false) {
+			toFire[i][0][eventIgnore] = true;
+			toFire[i][0].preventDefault();
+			ret = false;
+			break;
+		}
+	}
+
+	return ret;
 };
 
 /**
@@ -401,9 +440,15 @@ function matchesTag(tagName, element) {
  * @returns boolean
  */
 function matchesRoot(selector, element) {
-	/*jshint validthis:true*/
 	if (this.rootElement === window) {
-		return element === document;
+		return (
+			// Match the outer document (dispatched from document)
+			element === document ||
+			// The <html> element (dispatched from document.body or document.documentElement)
+			element === document.documentElement ||
+			// Or the window itself (dispatched from window)
+			element === window
+		);
 	}
 	return this.rootElement === element;
 }

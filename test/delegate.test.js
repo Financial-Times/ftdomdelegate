@@ -17,7 +17,10 @@ setupHelper.setUp = function() {
 		+ '</div>'
 		+ '<svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">'
 			+ '<circle id="svg-delegate-test-clickable" cx="60" cy="60" r="50"/>'
+			+ '<use id="svg-delegate-test-mouseover" href="#svg-delegate-test-clickable" x="100" fill="blue"/>'
 		+ '</svg>'
+		+ '<button disabled="true" id="btn-disabled">Normal</button>'
+		+ '<button disabled="true" id="btn-disabled-alt"><i id="btn-disabled-alt-label">With label</i></button>'
 	);
 };
 
@@ -165,6 +168,26 @@ describe("Delegate", () => {
 
 		element = document.getElementById('svg-delegate-test-clickable');
 		setupHelper.fireMouseEvent(element, 'click');
+
+		proclaim.isTrue(spy.calledOnce);
+
+		delegate.off();
+	});
+
+	it('Event delegation is supported for svg', () => {
+		let delegate;
+		let spy;
+		let element;
+
+		delegate = new Delegate(document);
+		spy = sinon.spy();
+		delegate.on('mouseover', 'svg', function () {
+			spy();
+			return false;
+		});
+
+		element = document.getElementById('svg-delegate-test-mouseover');
+		setupHelper.fireMouseEvent(element, 'mouseover');
 
 		proclaim.isTrue(spy.calledOnce);
 
@@ -648,6 +671,42 @@ describe("Delegate", () => {
 		proclaim.isTrue(spy.calledOnce);
 	});
 
+	it('Delegate instances on window catch events when bubbled from the body', () => {
+		let delegate = new Delegate(window);
+		let spy = sinon.spy();
+		delegate.on('click', spy);
+		setupHelper.fireMouseEvent(document.body, 'click');
+		proclaim.isTrue(spy.calledOnce);
+		delegate.off();
+	});
+
+	it('Delegate instances on window catch events when bubbled from the document', () => {
+		let delegate = new Delegate(window);
+		let spy = sinon.spy();
+		delegate.on('click', spy);
+		setupHelper.fireMouseEvent(document, 'click');
+		proclaim.isTrue(spy.calledOnce);
+		delegate.off();
+	});
+
+	it('Delegate instances on window catch events when bubbled from the <html> element', () => {
+		let delegate = new Delegate(window);
+		let spy = sinon.spy();
+		delegate.on('click', spy);
+		setupHelper.fireMouseEvent(document.documentElement, 'click');
+		proclaim.isTrue(spy.calledOnce);
+		delegate.off();
+	});
+
+	it('Delegate instances on window cause events when dispatched directly on window', () => {
+		let delegate = new Delegate(window);
+		let spy = sinon.spy();
+		delegate.on('click', spy);
+		setupHelper.fireMouseEvent(window, 'click');
+		proclaim.isTrue(spy.calledOnce);
+		delegate.off();
+	});
+
 	it('Test setting useCapture true false works get attached to capturing and bubbling event handlers, respectively', () => {
 		let delegate = new Delegate(document);
 		let bubbleSpy = sinon.spy();
@@ -698,6 +757,30 @@ describe("Delegate", () => {
 
 		proclaim.isTrue(spyOnContainer.calledOnce);
 		proclaim.isTrue(spyOnElement.calledOnce);
+	});
+
+	it('Disabled buttons with inner element don\'t trigger click', () => {
+		let delegate = new Delegate(document);
+		let spy = sinon.spy();
+
+		delegate.on('click', '#btn-disabled-alt-label', spy);
+		let element = document.getElementById("btn-disabled-alt-label");
+
+		setupHelper.fireMouseEvent(element, "click");
+		proclaim.isFalse(spy.called);
+		delegate.off();
+	});
+
+	it('Disabled buttons don\'t trigger click', () => {
+		let delegate = new Delegate(document);
+		let spy = sinon.spy();
+
+		delegate.on('click', '#btn-disabled', spy);
+		let element = document.getElementById("btn-disabled");
+
+		setupHelper.fireMouseEvent(element, "click");
+		proclaim.isFalse(spy.called);
+		delegate.off();
 	});
 
 });
