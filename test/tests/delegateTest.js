@@ -23,6 +23,8 @@ setupHelper.setUp = function() {
       + '<circle id="svg-delegate-test-clickable" cx="60" cy="60" r="50"/>'
       + '<use id="svg-delegate-test-mouseover" href="#svg-delegate-test-clickable" x="100" fill="blue"/>'
     + '</svg>'
+    + '<button disabled="true" id="btn-disabled">Normal</button>'
+    + '<button disabled="true" id="btn-disabled-alt"><i id="btn-disabled-alt-label">With label</i></button>'
   );
 };
 
@@ -706,6 +708,27 @@ buster.testCase('Delegate', {
 
     assert.calledOnce(spyOnContainer);
     assert.calledOnce(spyOnElement);
+  },
+
+  'Disabled buttons don\'t trigger click' : function() {
+    var delegate = new Delegate(document);
+    var spy = this.spy();
+
+    delegate.on('click', '#btn-disabled', spy);
+    var element = document.getElementById("btn-disabled");
+
+    setupHelper.fireMouseEvent(element, "click");
+    refute.called(spy);
+  },
+  'Disabled buttons with inner element don\'t trigger click' : function() {
+    var delegate = new Delegate(document);
+    var spy = this.spy();
+
+    delegate.on('click', '#btn-disabled-alt-label', spy);
+    var element = document.getElementById("btn-disabled-alt-label");
+
+    setupHelper.fireMouseEvent(element, "click");
+    refute.called(spy);
   },
 
   'tearDown': function() {
