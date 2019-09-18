@@ -36,23 +36,16 @@ The easiest way is to include the following script tag and let [Polyfill.io](htt
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Event,Array.prototype.map,Function.prototype.bind,document.querySelector,Element.prototype.matches"></script>
 ```
 
-## Usage ##
+## Usage
 
-The library is written in CommonJS and so can be `require` in.
+To import ftdomdelegate:
 
 ```js
-// If requiring the module via CommonJS, either:-
-Delegate = require('ftdomdelegate').Delegate;
-myDel = new Delegate(document.body);
-
-// Or:-
-delegate = require('ftdomdelegate');
-myDel = delegate(document.body);
+import Delegate from 'ftdomdelegate';
+let myDel = new Delegate(document.body);
 ```
 
-The script must be loaded prior to instantiating a Delegate object.
-
-To instantiate Delegate on the `body` and listen to some events:
+To instantiate `Delegate` on the `body` and listen to some events:
 
 ```js
 function handleButtonClicks(event) {
@@ -70,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Listen to all touch move
   // events that reach the body
   delegate.on('touchmove', handleTouchMove);
-
 });
 ```
 
