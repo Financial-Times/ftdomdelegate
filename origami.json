@@ -7,7 +7,7 @@
   "support": "https://github.com/ftlabs/ftdomdelegate/issues",
   "supportStatus": "active",
   "ci": {
-    "travis": "https://api.travis-ci.org/repos/ftlabs/ftdomdelegate/builds.json"
+    "circle": "https://circleci.com/api/v1/project/Financial-Times/o-message"
   },
   "browserFeatues": {
     "required": [

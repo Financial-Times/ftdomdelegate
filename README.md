@@ -1,4 +1,4 @@
-# ftdomdelegate [![Build Status](https://travis-ci.org/ftlabs/ftdomdelegate.svg?branch=master)](https://travis-ci.org/ftlabs/ftdomdelegate)
+# ftdomdelegate [![CircleCI](https://circleci.com/gh/Financial-Times/ftdomdelegate.svg?style=svg)](https://circleci.com/gh/Financial-Times/ftdomdelegate)
 
 FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
@@ -32,21 +32,6 @@ The easiest way is to include the following script tag and let [Polyfill.io](htt
 
 ```js
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Event,Array.prototype.map,Function.prototype.bind,document.querySelector,Element.prototype.matches"></script>
-```
-
-
-## Installation ##
-
-Get the [browserify](http://browserify.org/)-able source from a package manager:
-
-```
-npm install ftdomdelegate
-```
-
-or
-
-```
-bower install ftdomdelegate
 ```
 
 ## Usage ##
@@ -107,31 +92,6 @@ Also note: as of 0.2.0 you cannot specify more than one `eventType` in a single 
 ### Google Closure Compiler ###
 
 Delegate supports compilation with `ADVANCED_OPTIMIZATIONS` ('advanced mode'), which should reduce its size by about 70% (60% gzipped). Note that exposure of the `Delegate` variable isn't forced therefore you must compile it along with all of your code.
-
-## Tests ##
-
-Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `test/`. To run the tests statically:
-
-```
-$ cd ftdomdelegate/
-$ ./node_modules/.bin/buster-static -c test/buster.js
-Starting server on http://localhost:8282/
-```
-
-...then point your browser to http://localhost:8282/.
-
-```
-$ ./node_modules/.bin/buster-server
-buster-server running on http://localhost:1111
-```
-
-Point your browser to http://localhost:1111 and capture it, then in another terminal tab:
-
-```
-$ ./node_modules/.bin/buster-test -c test/buster.js
-```
-
-Code coverage is generated automatically with [istanbul](https://github.com/gotwarlost/istanbul).  The report outputs to `lcov-report/index.html`.
 
 ## API ##
 
