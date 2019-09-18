@@ -174,7 +174,7 @@ Delegate.prototype.on = function (eventType, selector, handler, useCapture) {
 		matcher = matchesId;
 	} else {
 		matcherParam = selector;
-		matcher = matches;
+		matcher = Element.prototype.matches;
 	}
 
 	// Add to the list of listeners
@@ -375,21 +375,6 @@ Delegate.prototype.handle = function (event) {
 Delegate.prototype.fire = function (event, target, listener) {
 	return listener.handler.call(target, event, target);
 };
-
-/**
- * Check whether an element
- * matches a generic selector.
- *
- * @type function()
- * @param {string} selector A CSS selector
- */
-let matches = (function (el) {
-	if (!el) {
-		return;
-	}
-	let p = el.prototype;
-	return (p.matches || p.matchesSelector || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector || p.oMatchesSelector);
-}(Element));
 
 /**
  * Check whether an element
