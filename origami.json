@@ -1,8 +1,10 @@
 {
-  "description": "Create and manage a DOM event delegator",
+  "description": "FT's dom delegate library is a component for creating and binding to events on all target elements matching the given selector. ",
+  "keywords": ["events", "DOM", "listener" ],
   "origamiType": "module",
+  "origamiCategory": "utilities",
   "origamiVersion": 1,
-  "support": "matthew.andrews@ft.com",
+  "support": "https://github.com/ftlabs/ftdomdelegate/issues",
   "supportStatus": "active",
   "ci": {
     "travis": "https://api.travis-ci.org/repos/ftlabs/ftdomdelegate/builds.json"

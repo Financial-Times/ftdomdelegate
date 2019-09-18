@@ -1,23 +1,27 @@
 /*jshint laxbreak:true*/
 
 /*global buster, Delegate*/
-
 var assert = buster.referee.assert;
 var refute = buster.referee.refute;
 
 var setupHelper = {};
+
+var assert = buster.assert;
+var refute = buster.refute;
 
 setupHelper.setUp = function() {
   document.body.insertAdjacentHTML('beforeend',
     '<div id="container1">'
       + '<div id="delegate-test-clickable" class="delegate-test-clickable"></div>'
       + '<div id="another-delegate-test-clickable"><input id="js-input" /></div>'
+      + '<div id="custom-event"></div>'
     + '</div>'
     + '<div id="container2">'
       + '<div id="element-in-container2-test-clickable" class="delegate-test-clickable"></div>'
     + '</div>'
     + '<svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">'
       + '<circle id="svg-delegate-test-clickable" cx="60" cy="60" r="50"/>'
+      + '<use id="svg-delegate-test-mouseover" href="#svg-delegate-test-clickable" x="100" fill="blue"/>'
     + '</svg>'
   );
 };
@@ -57,6 +61,13 @@ setupHelper.fireFormEvent = function (target, eventName) {
     ev = document.createEventObject();
     target.fireEvent( 'on' + eventName, ev);
   }
+};
+
+setupHelper.fireCustomEvent = function(target, eventName) {
+  var ev = new Event(eventName, {
+    bubbles: true
+  });
+  target.dispatchEvent(ev);
 };
 
 buster.testCase('Delegate', {
@@ -146,6 +157,23 @@ buster.testCase('Delegate', {
 
     delegate.off();
   },
+  'Event delegation is supported for svg' : function() {
+    var delegate, spy, element;
+
+    delegate = new Delegate(document);
+    spy = this.spy();
+    delegate.on('mouseover', 'svg', function (event) {
+      spy();
+      return false;
+    });
+
+    element = document.getElementById('svg-delegate-test-mouseover');
+    setupHelper.fireMouseEvent(element, 'mouseover');
+
+    assert.calledOnce(spy);
+
+    delegate.off();
+  },
   'Class name selectors are supported' : function() {
     var delegate, spy, element;
 
@@ -221,8 +249,15 @@ buster.testCase('Delegate', {
     delegate.on("click", '#delegate-test-clickable', function(event) {
       spyA();
 
+      // event.defaultPrevented appears to have issues in IE so just mock
+      // preventDefault instead.
+      var defaultPrevented;
+      event.preventDefault = function() {
+        defaultPrevented = true;
+      };
+
       setTimeout(function() {
-        assert.equals(event.defaultPrevented, true);
+        assert.equals(defaultPrevented, true);
         done();
       }, 0);
 
@@ -652,6 +687,25 @@ buster.testCase('Delegate', {
     assert.calledOnce(spy);
 
     delegate.off();
+  },
+
+  'Custom events are supported': function() {
+    var delegate = new Delegate(document.body);
+    var spyOnContainer = this.spy();
+    var spyOnElement = this.spy();
+
+    delegate.on('foobar', '#container1', function(event) {
+      spyOnContainer();
+    });
+
+    delegate.on('foobar', '#custom-event', function(event) {
+      spyOnElement();
+    });
+
+    setupHelper.fireCustomEvent(document.getElementById("custom-event"), 'foobar');
+
+    assert.calledOnce(spyOnContainer);
+    assert.calledOnce(spyOnElement);
   },
 
   'tearDown': function() {

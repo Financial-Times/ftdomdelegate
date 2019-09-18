@@ -1,6 +1,6 @@
 # ftdomdelegate [![Build Status](https://travis-ci.org/ftlabs/ftdomdelegate.svg?branch=master)](https://travis-ci.org/ftlabs/ftdomdelegate)
 
-FT's dom delegate library is a simple, easy-to-use component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
+FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
 FT DOM Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
 
@@ -20,46 +20,46 @@ The library has been deployed as part of the [FT Web App](http://app.ft.com/) an
 * Android Browser on Android 2 +
 * PlayBook OS 1 +
 
-When combined with a good [event listener polyfill](https://github.com/jonathantneal/EventListener) the library can be used in Internet Explorer 8 for events that bubble natively.
+For older browsers (IE8) you'll need the following polyfills
+
+ - [Event](https://polyfill.io/v2/docs/features/#Event)
+ - [Array.prototype.map](https://polyfill.io/v2/docs/features/#Array_prototype_map)
+ - [Function.prototype.bind](https://polyfill.io/v2/docs/features/#Function_prototype_bind)
+ - [document.querySelector](https://polyfill.io/v2/docs/features/#document_querySelector)
+ - [Element.prototype.matches](https://polyfill.io/v2/docs/features/#Element_prototype_matches)
+
+The easiest way is to include the following script tag and let [Polyfill.io](https://Polyfill.io) work its magic
+
+```js
+<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Event,Array.prototype.map,Function.prototype.bind,document.querySelector,Element.prototype.matches"></script>
+```
+
 
 ## Installation ##
 
 Get the [browserify](http://browserify.org/)-able source from a package manager:
 
 ```
-npm install dom-delegate
+npm install ftdomdelegate
 ```
 
 or
 
 ```
-bower install dom-delegate
+bower install ftdomdelegate
 ```
-
-or
-
-Download the [built version](http://wzrd.in/standalone/dom-delegate@latest).  (Note: this exposes the API via `window.domDelegate.Delegate`)  
 
 ## Usage ##
 
-The library is written in CommonJS and so can either be `require` in or the prebuilt wzrd.in version can be used, which makes the API available via `window.domDelegate.Delegate`.
+The library is written in CommonJS and so can be `require` in.
 
 ```js
-var delegate, Delegate, myDel;
-
-// If using the wzrd.in pre-built javascript, either:-
-Delegate = domDelegate.Delegate
-myDel = new Delegate(document.body);
-
-// Or:-
-myDel = domDelegate(document.body);
-
 // If requiring the module via CommonJS, either:-
-Delegate = require('dom-delegate').Delegate;
+Delegate = require('ftdomdelegate').Delegate;
 myDel = new Delegate(document.body);
 
 // Or:-
-delegate = require('dom-delegate');
+delegate = require('ftdomdelegate');
 myDel = delegate(document.body);
 ```
 
@@ -76,7 +76,7 @@ function handleTouchMove(event) {
   // Do some other things
 }
 
-window.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var delegate = new Delegate(document.body);
   delegate.on('click', 'button', handleButtonClicks);
 
@@ -84,7 +84,7 @@ window.addEventListener('load', function() {
   // events that reach the body
   delegate.on('touchmove', handleTouchMove);
 
-}, false);
+});
 ```
 
 A cool trick to handle images that fail to load:
@@ -94,10 +94,10 @@ function handleImageFail() {
   this.style.display = 'none';
 }
 
-window.addEventListener('load', function() {
+document.addEventListener('DOMContentLoaded', function() {
   var delegate = new Delegate(document.body);
   delegate.on('error', 'img', handleImageFail);
-}, false);
+});
 ```
 
 Note: as of 0.1.2 you do not need to provide a DOM element at the point of instantiation, it can be set later via the `root` method.
