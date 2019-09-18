@@ -19,6 +19,7 @@ setupHelper.setUp = function() {
     + '</div>'
     + '<svg viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">'
       + '<circle id="svg-delegate-test-clickable" cx="60" cy="60" r="50"/>'
+      + '<use id="svg-delegate-test-mouseover" href="#svg-delegate-test-clickable" x="100" fill="blue"/>'
     + '</svg>'
   );
 };
@@ -152,6 +153,23 @@ buster.testCase('Delegate', {
 
     assert.calledOnce(spy);
 
+    delegate.off();
+  },
+  'Event delegation is supported for svg' : function() {
+    var delegate, spy, element;
+
+    delegate = new Delegate(document);
+    spy = this.spy();
+    delegate.on('mouseover', 'svg', function (event) {
+      spy();
+      return false;
+    });
+
+    element = document.getElementById('svg-delegate-test-mouseover');
+    setupHelper.fireMouseEvent(element, 'mouseover');
+
+    assert.calledOnce(spy);
+    
     delegate.off();
   },
   'Class name selectors are supported' : function() {
