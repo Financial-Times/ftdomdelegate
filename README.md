@@ -20,13 +20,15 @@ The library has been deployed as part of the [FT Web App](http://app.ft.com/) an
 * Android Browser on Android 2 +
 * PlayBook OS 1 +
 
+You'll need the following polyfill to support IE11:
+ - [Element.prototype.matches](https://polyfill.io/v2/docs/features/#Element_prototype_matches)
+
 For older browsers (IE8) you'll need the following polyfills
 
  - [Event](https://polyfill.io/v2/docs/features/#Event)
  - [Array.prototype.map](https://polyfill.io/v2/docs/features/#Array_prototype_map)
  - [Function.prototype.bind](https://polyfill.io/v2/docs/features/#Function_prototype_bind)
  - [document.querySelector](https://polyfill.io/v2/docs/features/#document_querySelector)
- - [Element.prototype.matches](https://polyfill.io/v2/docs/features/#Element_prototype_matches)
 
 The easiest way is to include the following script tag and let [Polyfill.io](https://Polyfill.io) work its magic
 
