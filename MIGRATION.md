@@ -2,7 +2,9 @@
 
 ## Migrating from v3 to v4
 
-v4 changes the default export to the constructor. It also uses [ES Modules over CommonJS](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/) syntax. We recommend to include `ftdomdelegate` using the es modules syntax.
+To support IE11 and other older browsers v4 requires the [Element.prototype.matches](https://polyfill.io/v3/url-builder/#Element.prototype.matches-polyfill) polyfill.
+
+It also uses [ES Modules over CommonJS](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/) syntax, and updates the default export to the constructor. We recommend to include `ftdomdelegate` using the es modules syntax.
 
 If you used the `.Delegate` constructure update your import:
 
