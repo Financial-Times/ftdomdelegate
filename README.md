@@ -1,71 +1,24 @@
-# ftdomdelegate [![Build Status](https://travis-ci.org/ftlabs/ftdomdelegate.svg?branch=master)](https://travis-ci.org/ftlabs/ftdomdelegate)
+
+ftdomdelegate [![CircleCI](https://circleci.com/gh/Financial-Times/ftdomdelegate.svg?style=svg)](https://circleci.com/gh/Financial-Times/ftdomdelegate) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](#licence)
+=================
 
 FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
-FT DOM Delegate is developed by [FT Labs](http://labs.ft.com/), part of the Financial Times.
+- [JavaScript](#javascript)
+- [Migration](#migration)
+- [Contact](#contact)
+- [Licence](#licence)
 
-## Compatibility ##
+## JavaScript
 
-The library has been deployed as part of the [FT Web App](http://app.ft.com/) and is tried and tested on the following browsers:
-
-* Safari 5 +
-* Mobile Safari on iOS 3 +
-* Chrome 1 +
-* Chrome on iOS 5 +
-* Chrome on Android 4.0 +
-* Opera 11.5 +
-* Opera Mobile 11.5 +
-* Firefox 4 +
-* Internet Explorer 9 +
-* Android Browser on Android 2 +
-* PlayBook OS 1 +
-
-For older browsers (IE8) you'll need the following polyfills
-
- - [Event](https://polyfill.io/v2/docs/features/#Event)
- - [Array.prototype.map](https://polyfill.io/v2/docs/features/#Array_prototype_map)
- - [Function.prototype.bind](https://polyfill.io/v2/docs/features/#Function_prototype_bind)
- - [document.querySelector](https://polyfill.io/v2/docs/features/#document_querySelector)
- - [Element.prototype.matches](https://polyfill.io/v2/docs/features/#Element_prototype_matches)
-
-The easiest way is to include the following script tag and let [Polyfill.io](https://Polyfill.io) work its magic
+To import ftdomdelegate:
 
 ```js
-<script src="https://cdn.polyfill.io/v2/polyfill.js?features=Event,Array.prototype.map,Function.prototype.bind,document.querySelector,Element.prototype.matches"></script>
+import Delegate from 'ftdomdelegate';
+let myDel = new Delegate(document.body);
 ```
 
-
-## Installation ##
-
-Get the [browserify](http://browserify.org/)-able source from a package manager:
-
-```
-npm install ftdomdelegate
-```
-
-or
-
-```
-bower install ftdomdelegate
-```
-
-## Usage ##
-
-The library is written in CommonJS and so can be `require` in.
-
-```js
-// If requiring the module via CommonJS, either:-
-Delegate = require('ftdomdelegate').Delegate;
-myDel = new Delegate(document.body);
-
-// Or:-
-delegate = require('ftdomdelegate');
-myDel = delegate(document.body);
-```
-
-The script must be loaded prior to instantiating a Delegate object.
-
-To instantiate Delegate on the `body` and listen to some events:
+To instantiate `Delegate` on the `body` and listen to some events:
 
 ```js
 function handleButtonClicks(event) {
@@ -83,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Listen to all touch move
   // events that reach the body
   delegate.on('touchmove', handleTouchMove);
-
 });
 ```
 
@@ -99,41 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
   delegate.on('error', 'img', handleImageFail);
 });
 ```
-
-Note: as of 0.1.2 you do not need to provide a DOM element at the point of instantiation, it can be set later via the `root` method.
-
-Also note: as of 0.2.0 you cannot specify more than one `eventType` in a single call to `off` or `on`.
-
-### Google Closure Compiler ###
-
-Delegate supports compilation with `ADVANCED_OPTIMIZATIONS` ('advanced mode'), which should reduce its size by about 70% (60% gzipped). Note that exposure of the `Delegate` variable isn't forced therefore you must compile it along with all of your code.
-
-## Tests ##
-
-Tests are run using [buster](http://docs.busterjs.org/en/latest/) and sit in `test/`. To run the tests statically:
-
-```
-$ cd ftdomdelegate/
-$ ./node_modules/.bin/buster-static -c test/buster.js
-Starting server on http://localhost:8282/
-```
-
-...then point your browser to http://localhost:8282/.
-
-```
-$ ./node_modules/.bin/buster-server
-buster-server running on http://localhost:1111
-```
-
-Point your browser to http://localhost:1111 and capture it, then in another terminal tab:
-
-```
-$ ./node_modules/.bin/buster-test -c test/buster.js
-```
-
-Code coverage is generated automatically with [istanbul](https://github.com/gotwarlost/istanbul).  The report outputs to `lcov-report/index.html`.
-
-## API ##
 
 ### .on(eventType[, selector], handler[, useCapture]) ###
 
@@ -189,4 +106,14 @@ Short hand for off() and root(), ie both with no parameters. Used to reset the d
 
 ## Credits and collaboration ##
 
-The developers of ftdomdelegate are [Matthew Andrews](https://twitter.com/andrewsmatt) and [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia). Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/). All open source code released by FT Labs is licenced under the MIT licence. We welcome comments, feedback and suggestions. Please feel free to raise an issue or pull request.
+FT DOM Delegate was developed by [FT Labs](http://labs.ft.com/), part of the Financial Times. It's now maintained by the [Origami Team](https://origami.ft.com/). The developers of ftdomdelegate were [Matthew Andrews](https://twitter.com/andrewsmatt) and [Matthew Caruana Galizia](http://twitter.com/mcaruanagalizia). Test engineering by [Sam Giles](https://twitter.com/SamuelGiles_). The API is influenced by [jQuery Live](http://api.jquery.com/live/).
+
+## Migration guide
+
+State | Major Version | Last Minor Release | Migration guide |
+:---: | :---: | :---: | :---:
+✨ active | 4 | N/A | [migrate to v4](MIGRATION.md#migrating-from-v3-to-v4) |
+⚠ maintained | 3 | 3.1 | [migrate to v3](MIGRATION.md#migrating-from-v2-to-v3) |
+╳ deprecated | 2 | 2.2 | N/A |
+╳ deprecated | 1 | 1.0 | N/A |
+

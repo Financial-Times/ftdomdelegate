@@ -4,14 +4,14 @@
   "origamiType": "module",
   "origamiCategory": "utilities",
   "origamiVersion": 1,
-  "support": "https://github.com/ftlabs/ftdomdelegate/issues",
-  "supportStatus": "active",
+  "support": "https://github.com/Financial-Times/ftdomdelegate/issues",
+  "supportStatus": "maintained",
   "ci": {
-    "travis": "https://api.travis-ci.org/repos/ftlabs/ftdomdelegate/builds.json"
+    "circle": "https://circleci.com/api/v1/project/Financial-Times/ftdomdelegate"
   },
   "browserFeatues": {
     "required": [
-      "matches"
+      "Element.prototype.matches"
     ]
   }
 }
