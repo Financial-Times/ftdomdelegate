@@ -11,5 +11,8 @@
     "dom",
     "events"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-origami-component": "^2.0.1"
+  }
 }
