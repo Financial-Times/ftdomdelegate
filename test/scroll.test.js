@@ -6,7 +6,7 @@ import sinon from 'sinon/pkg/sinon';
 describe("Delegate", () => {
 
 	beforeEach(() => {
-		let snip = '<p>text</p>';
+		const snip = '<p>text</p>';
 		let out = '';
 		for (let i = 0, l = 10000; i < l; i++) {
 			out += snip;
@@ -16,16 +16,16 @@ describe("Delegate", () => {
 	});
 
 	afterEach(() => {
-		let el = document.getElementById('el');
+		const el = document.getElementById('el');
 		el.parentNode.removeChild(el);
 	});
 
 	it('Test scroll event', done => {
 
-		let delegate = new Delegate(document);
-		let windowDelegate = new Delegate(window);
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const delegate = new Delegate(document);
+		const windowDelegate = new Delegate(window);
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 		delegate.on('scroll', spyA);
 		windowDelegate.on('scroll', spyB);
 
@@ -42,12 +42,12 @@ describe("Delegate", () => {
 	});
 
 	it('Test sub-div scrolling', done => {
-		let delegate = new Delegate(document);
-		let el = document.getElementById('el');
+		const delegate = new Delegate(document);
+		const el = document.getElementById('el');
 		el.style.height = '100px';
 		el.style.overflow = 'scroll';
 
-		let spyA = sinon.spy();
+		const spyA = sinon.spy();
 		delegate.on('scroll', '#el', spyA);
 
 		// Scroll events on some browsers are asynchronous
@@ -57,7 +57,7 @@ describe("Delegate", () => {
 			done();
 		}, 100);
 
-		let event = document.createEvent("MouseEvents");
+		const event = document.createEvent("MouseEvents");
 		event.initMouseEvent('scroll', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 		el.dispatchEvent(event);
 	});

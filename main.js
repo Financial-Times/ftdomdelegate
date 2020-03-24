@@ -36,7 +36,7 @@ function Delegate(root) {
  * @returns {Delegate} This method is chainable
  */
 Delegate.prototype.root = function (root) {
-	let listenerMap = this.listenerMap;
+	const listenerMap = this.listenerMap;
 	let eventType;
 
 	// Remove master event listeners
@@ -270,7 +270,7 @@ Delegate.prototype.off = function (eventType, selector, handler, useCapture) {
 Delegate.prototype.handle = function (event) {
 	let i;
 	let l;
-	let type = event.type;
+	const type = event.type;
 	let root;
 	let phase;
 	let listener;
