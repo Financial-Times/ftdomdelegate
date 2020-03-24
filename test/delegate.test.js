@@ -3,7 +3,7 @@ import Delegate from '../main';
 import proclaim from 'proclaim';
 import sinon from 'sinon/pkg/sinon';
 
-let setupHelper = {};
+const setupHelper = {};
 
 setupHelper.setUp = function() {
 	document.body.insertAdjacentHTML('beforeend',
@@ -62,7 +62,7 @@ setupHelper.fireFormEvent = function (target, eventName) {
 };
 
 setupHelper.fireCustomEvent = function(target, eventName) {
-	let ev = new Event(eventName, {
+	const ev = new Event(eventName, {
 		bubbles: true
 	});
 	target.dispatchEvent(ev);
@@ -78,14 +78,14 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate#off should remove the event handlers for a selector', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegate.on('click', '#delegate-test-clickable', spyA);
 		delegate.on('click', '#delegate-test-clickable', spyB);
 
-		let element = document.getElementById("delegate-test-clickable");
+		const element = document.getElementById("delegate-test-clickable");
 
 		setupHelper.fireMouseEvent(element, "click");
 
@@ -233,14 +233,14 @@ describe("Delegate", () => {
 	});
 
 	it('If two click handlers are registered then all handlers should be called on click', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegate.on("click", '#delegate-test-clickable', spyA);
 		delegate.on("click", '#delegate-test-clickable', spyB);
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 		setupHelper.fireMouseEvent(element, "click");
 
 		proclaim.isTrue(spyA.calledOnce);
@@ -250,10 +250,10 @@ describe("Delegate", () => {
 	});
 
 	it('Returning false from a callback should stop propagation immediately', () => {
-		let delegate = new Delegate(document);
+		const delegate = new Delegate(document);
 
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegate.on("click", '#delegate-test-clickable', function () {
 			spyA();
@@ -263,7 +263,7 @@ describe("Delegate", () => {
 		});
 		delegate.on("click", '#delegate-test-clickable', spyB);
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 		setupHelper.fireMouseEvent(element, "click");
 
 		proclaim.isTrue(spyA.calledOnce);
@@ -273,9 +273,9 @@ describe("Delegate", () => {
 	});
 
 	it('Returning false from a callback should preventDefault', (done) => {
-		let delegate = new Delegate(document.body);
+		const delegate = new Delegate(document.body);
 
-		let spyA = sinon.spy();
+		const spyA = sinon.spy();
 
 		delegate.on("click", '#delegate-test-clickable', function (event) {
 			spyA();
@@ -295,7 +295,7 @@ describe("Delegate", () => {
 			return false;
 		});
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 		setupHelper.fireMouseEvent(element, "click");
 
 		proclaim.isTrue(spyA.calledOnce);
@@ -303,11 +303,11 @@ describe("Delegate", () => {
 	});
 
 	it('Returning false from a callback should stop propagation globally', () => {
-		let delegateA = new Delegate(document);
-		let delegateB = new Delegate(document);
+		const delegateA = new Delegate(document);
+		const delegateB = new Delegate(document);
 
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegateA.on("click", '#delegate-test-clickable', function() {
 			spyA();
@@ -317,7 +317,7 @@ describe("Delegate", () => {
 		});
 		delegateB.on("click", '#delegate-test-clickable', spyB);
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 		setupHelper.fireMouseEvent(element, "click");
 
 		proclaim.isTrue(spyA.calledOnce);
@@ -329,8 +329,8 @@ describe("Delegate", () => {
 
 
 	it('Clicking on parent node should not trigger event', () => {
-		let delegate = new Delegate(document);
-		let spy = sinon.spy();
+		const delegate = new Delegate(document);
+		const spy = sinon.spy();
 
 		delegate.on("click", "#delegate-test-clickable", spy);
 
@@ -338,11 +338,11 @@ describe("Delegate", () => {
 
 		proclaim.isFalse(spy.called);
 
-		let spyA = sinon.spy();
+		const spyA = sinon.spy();
 
 		delegate.on("click", "#another-delegate-test-clickable", spyA);
 
-		let element = document.getElementById("another-delegate-test-clickable");
+		const element = document.getElementById("another-delegate-test-clickable");
 		setupHelper.fireMouseEvent(element, "click");
 
 		proclaim.isTrue(spyA.calledOnce);
@@ -353,7 +353,7 @@ describe("Delegate", () => {
 
 	it('Exception should be thrown when no handler is specified in Delegate#on', (done) => {
 		try {
-			let delegate = new Delegate(document);
+			const delegate = new Delegate(document);
 			delegate.on("click", '#delegate-test-clickable');
 		} catch (e) {
 			proclaim.equal(e.name, 'TypeError');
@@ -364,17 +364,17 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate#off with zero arguments should remove all handlers', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegate.on('click', '#delegate-test-clickable', spyA);
 		delegate.on('click', '#another-delegate-test-clickable', spyB);
 
 		delegate.off();
 
-		let element = document.getElementById('delegate-test-clickable');
-		let element2 = document.getElementById('another-delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
+		const element2 = document.getElementById('another-delegate-test-clickable');
 
 		setupHelper.fireMouseEvent(element, "click");
 		setupHelper.fireMouseEvent(element2, "click");
@@ -393,15 +393,15 @@ describe("Delegate", () => {
 	});
 
 	it('Regression test: Delegate#off called from a callback should succeed without exception', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
 
 		delegate.on('click', '#delegate-test-clickable', function () {
 			spyA();
 			delegate.off();
 		});
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 
 		proclaim.doesNotThrow(function () {
 			setupHelper.fireMouseEvent(element, 'click');
@@ -411,9 +411,9 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate#off called from a callback should prevent execution of subsequent callbacks', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
-		let spyB = sinon.spy();
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
+		const spyB = sinon.spy();
 
 		delegate.on('click', '#delegate-test-clickable', function () {
 			spyA();
@@ -421,7 +421,7 @@ describe("Delegate", () => {
 		});
 		delegate.on('click', '#delegate-test-clickable', spyB);
 
-		let element = document.getElementById('delegate-test-clickable');
+		const element = document.getElementById('delegate-test-clickable');
 
 		setupHelper.fireMouseEvent(element, 'click');
 
@@ -430,9 +430,9 @@ describe("Delegate", () => {
 	});
 
 	it('Can be instantiated without a root node', () => {
-		let delegate = new Delegate();
-		let spyA = sinon.spy();
-		let element = document.getElementById('delegate-test-clickable');
+		const delegate = new Delegate();
+		const spyA = sinon.spy();
+		const element = document.getElementById('delegate-test-clickable');
 
 		delegate.on('click', '#delegate-test-clickable', function () {
 			spyA();
@@ -444,9 +444,9 @@ describe("Delegate", () => {
 	});
 
 	it('Can be bound to an element after its event listeners have been set up', () => {
-		let delegate = new Delegate();
-		let spyA = sinon.spy();
-		let element = document.getElementById('delegate-test-clickable');
+		const delegate = new Delegate();
+		const spyA = sinon.spy();
+		const element = document.getElementById('delegate-test-clickable');
 
 		delegate.on('click', '#delegate-test-clickable', function () {
 			spyA();
@@ -460,9 +460,9 @@ describe("Delegate", () => {
 	});
 
 	it('Can be unbound from an element', () => {
-		let delegate = new Delegate(document);
-		let spyA = sinon.spy();
-		let element = document.getElementById('delegate-test-clickable');
+		const delegate = new Delegate(document);
+		const spyA = sinon.spy();
+		const element = document.getElementById('delegate-test-clickable');
 
 		delegate.on('click', '#delegate-test-clickable', function () {
 			spyA();
@@ -475,11 +475,11 @@ describe("Delegate", () => {
 	});
 
 	it('Can be to bound to a different DOM element', () => {
-		let spyA = sinon.spy();
-		let element = document.getElementById('element-in-container2-test-clickable');
+		const spyA = sinon.spy();
+		const element = document.getElementById('element-in-container2-test-clickable');
 
 		// Attach to the first container
-		let delegate = new Delegate(document.getElementById('container1'));
+		const delegate = new Delegate(document.getElementById('container1'));
 
 		// Listen to elements with class delegate-test-clickable
 		delegate.on('click', '.delegate-test-clickable', function () {
@@ -593,10 +593,10 @@ describe("Delegate", () => {
 
 	// Test for issue #16
 	it('Can unset a listener on the root element when passing the callback into the second parameter', () => {
-		let element = document.getElementById('element-in-container2-test-clickable');
-		let delegate = new Delegate(document.body);
-		let spy = sinon.spy();
-		let spy2 = sinon.spy();
+		const element = document.getElementById('element-in-container2-test-clickable');
+		const delegate = new Delegate(document.body);
+		const spy = sinon.spy();
+		const spy2 = sinon.spy();
 
 		delegate.on('click', spy);
 		delegate.on('click', '#element-in-container2-test-clickable', spy2);
@@ -672,8 +672,8 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate instances on window catch events when bubbled from the body', () => {
-		let delegate = new Delegate(window);
-		let spy = sinon.spy();
+		const delegate = new Delegate(window);
+		const spy = sinon.spy();
 		delegate.on('click', spy);
 		setupHelper.fireMouseEvent(document.body, 'click');
 		proclaim.isTrue(spy.calledOnce);
@@ -681,8 +681,8 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate instances on window catch events when bubbled from the document', () => {
-		let delegate = new Delegate(window);
-		let spy = sinon.spy();
+		const delegate = new Delegate(window);
+		const spy = sinon.spy();
 		delegate.on('click', spy);
 		setupHelper.fireMouseEvent(document, 'click');
 		proclaim.isTrue(spy.calledOnce);
@@ -690,8 +690,8 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate instances on window catch events when bubbled from the <html> element', () => {
-		let delegate = new Delegate(window);
-		let spy = sinon.spy();
+		const delegate = new Delegate(window);
+		const spy = sinon.spy();
 		delegate.on('click', spy);
 		setupHelper.fireMouseEvent(document.documentElement, 'click');
 		proclaim.isTrue(spy.calledOnce);
@@ -699,8 +699,8 @@ describe("Delegate", () => {
 	});
 
 	it('Delegate instances on window cause events when dispatched directly on window', () => {
-		let delegate = new Delegate(window);
-		let spy = sinon.spy();
+		const delegate = new Delegate(window);
+		const spy = sinon.spy();
 		delegate.on('click', spy);
 		setupHelper.fireMouseEvent(window, 'click');
 		proclaim.isTrue(spy.calledOnce);
@@ -708,9 +708,9 @@ describe("Delegate", () => {
 	});
 
 	it('Test setting useCapture true false works get attached to capturing and bubbling event handlers, respectively', () => {
-		let delegate = new Delegate(document);
-		let bubbleSpy = sinon.spy();
-		let captureSpy = sinon.spy();
+		const delegate = new Delegate(document);
+		const bubbleSpy = sinon.spy();
+		const captureSpy = sinon.spy();
 		let bubblePhase;
 		let capturePhase;
 
@@ -741,9 +741,9 @@ describe("Delegate", () => {
 	});
 
 	it('Custom events are supported', () => {
-		let delegate = new Delegate(document.body);
-		let spyOnContainer = sinon.spy();
-		let spyOnElement = sinon.spy();
+		const delegate = new Delegate(document.body);
+		const spyOnContainer = sinon.spy();
+		const spyOnElement = sinon.spy();
 
 		delegate.on('foobar', '#container1', function () {
 			spyOnContainer();
@@ -760,11 +760,11 @@ describe("Delegate", () => {
 	});
 
 	it('Disabled buttons with inner element don\'t trigger click', () => {
-		let delegate = new Delegate(document);
-		let spy = sinon.spy();
+		const delegate = new Delegate(document);
+		const spy = sinon.spy();
 
 		delegate.on('click', '#btn-disabled-alt-label', spy);
-		let element = document.getElementById("btn-disabled-alt-label");
+		const element = document.getElementById("btn-disabled-alt-label");
 
 		setupHelper.fireMouseEvent(element, "click");
 		proclaim.isFalse(spy.called);
@@ -772,11 +772,11 @@ describe("Delegate", () => {
 	});
 
 	it('Disabled buttons don\'t trigger click', () => {
-		let delegate = new Delegate(document);
-		let spy = sinon.spy();
+		const delegate = new Delegate(document);
+		const spy = sinon.spy();
 
 		delegate.on('click', '#btn-disabled', spy);
-		let element = document.getElementById("btn-disabled");
+		const element = document.getElementById("btn-disabled");
 
 		setupHelper.fireMouseEvent(element, "click");
 		proclaim.isFalse(spy.called);
