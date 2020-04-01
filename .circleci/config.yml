@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: npm config set prefix "$HOME/.local"
-      - run: npm i -g origami-build-tools@^7
+      - run: npm i -g origami-build-tools@^9
       - run: $HOME/.local/bin/obt install
       - run: $HOME/.local/bin/obt demo --demo-filter pa11y --suppress-errors
       - run: $HOME/.local/bin/obt verify
