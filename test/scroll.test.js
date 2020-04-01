@@ -1,7 +1,6 @@
-/* eslint-env mocha, sinon, proclaim */
+/* eslint-env mocha */
+/* global proclaim sinon */
 import Delegate from '../main';
-import proclaim from 'proclaim';
-import sinon from 'sinon/pkg/sinon';
 
 describe("Delegate", () => {
 
