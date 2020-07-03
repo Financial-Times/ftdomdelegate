@@ -14,13 +14,9 @@ jobs:
     - name: Repository name
       id: repo_name
       run: echo ::set-output name=REPO_NAME::${GITHUB_REPOSITORY/*\//}
-    - uses: jwalton/gh-find-current-pr@v1
-      id: findPr
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
     - run: npx origami-ci branch
       env:
         ORIGAMI_CI_NAME: ${{ steps.repo_name.outputs.REPO_NAME }}
         ORIGAMI_CI_VERSION: 0.0.0
-        ORIGAMI_PULL_REQUEST: ${{ steps.findPr.outputs.pr }}
         GITHUB_TOKEN: ${{ secrets.ORIGAMI_FOX_ACCESS_TOKEN }}
+        ORIGAMI_PULL_REQUEST: ${{ github.event.pull_request.html_url }}
