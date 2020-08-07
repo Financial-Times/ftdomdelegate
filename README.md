@@ -4,10 +4,15 @@ ftdomdelegate [![CircleCI](https://circleci.com/gh/Financial-Times/ftdomdelegate
 
 FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
 
+- [Usage](#usage)
 - [JavaScript](#javascript)
 - [Migration](#migration)
 - [Contact](#contact)
 - [Licence](#licence)
+
+## Usage
+
+Check out [how to include Origami components in your project](https://origami.ft.com/docs/components/#including-origami-components-in-your-project) to get started with `ftdomdelegate`.
 
 ## JavaScript
 
