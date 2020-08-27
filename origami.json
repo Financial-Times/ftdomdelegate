@@ -6,9 +6,6 @@
   "origamiVersion": 1,
   "support": "https://github.com/Financial-Times/ftdomdelegate/issues",
   "supportStatus": "maintained",
-  "ci": {
-    "circle": "https://circleci.com/api/v1/project/Financial-Times/ftdomdelegate"
-  },
   "browserFeatues": {
     "required": [
       "Element.prototype.matches"
