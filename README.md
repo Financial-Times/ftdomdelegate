@@ -1,5 +1,5 @@
 
-ftdomdelegate [![CircleCI](https://circleci.com/gh/Financial-Times/ftdomdelegate.svg?style=svg)](https://circleci.com/gh/Financial-Times/ftdomdelegate) [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](#licence)
+ftdomdelegate [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](#licence)
 =================
 
 FT's dom delegate library is a component for binding to events on all target elements matching the given selector, irrespective of whether anything exists in the DOM at registration time or not. This allows developers to implement the [event delegation pattern](http://www.sitepoint.com/javascript-event-delegation-is-easier-than-you-think/).
