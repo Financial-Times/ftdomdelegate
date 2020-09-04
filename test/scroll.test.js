@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 /* global proclaim sinon */
-import Delegate from '../main';
+import Delegate from '../main.js';
 
 describe("Delegate", () => {
 
