@@ -20,6 +20,8 @@ on:
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    timeout-minutes: 120
     steps:
       - name: 'Wait for status checks'
         id: waitforstatuschecks
@@ -36,5 +38,3 @@ jobs:
           MERGE_LABELS: "dependencies"
           MERGE_METHOD: "rebase"
           MERGE_FORKS: "false"
-          UPDATE_LABELS: ""
-          UPDATE_METHOD: "rebase"
