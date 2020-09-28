@@ -15,6 +15,6 @@
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-config-origami-component": "^2.1.0",
-    "origami-ci-tools": "^2.1.0"
+    "origami-ci-tools": "^2.1.1"
   }
 }
