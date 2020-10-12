@@ -13,7 +13,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^7.10.0",
+    "eslint": "^7.11.0",
     "eslint-config-origami-component": "^2.1.0",
     "origami-ci-tools": "^2.1.1"
   }
