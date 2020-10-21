@@ -3,7 +3,7 @@
   "keywords": ["events", "DOM", "listener" ],
   "origamiType": "module",
   "origamiCategory": "utilities",
-  "origamiVersion": 1,
+  "origamiVersion": 2,
   "support": "https://github.com/Financial-Times/ftdomdelegate/issues",
   "supportStatus": "maintained",
   "browserFeatues": {

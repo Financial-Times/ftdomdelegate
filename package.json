@@ -1,20 +1,26 @@
 {
-  "name": "ftdomdelegate",
-  "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
-  "contributors": [
-    "Matthew Caruana Galizia",
-    "Sam Giles",
-    "Matt Andrews"
-  ],
-  "keywords": [
-    "delegate",
-    "dom",
-    "events"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^7.9.0",
-    "eslint-config-origami-component": "^2.1.0",
-    "origami-ci-tools": "^2.1.0"
-  }
+    "name": "ftdomdelegate",
+    "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
+    "description": "Create and manage a DOM event delegator.",
+    "contributors": [
+        "Matthew Caruana Galizia",
+        "Sam Giles",
+        "Matt Andrews"
+    ],
+    "keywords": [
+        "delegate",
+        "dom",
+        "events"
+    ],
+    "license": "MIT",
+    "main": "main.js",
+    "devDependencies": {
+        "eslint": "^7.9.0",
+        "eslint-config-origami-component": "^2.1.0",
+        "origami-ci-tools": "^2.1.0"
+    },
+    "publishConfig": {
+        "registry": "http://localhost:4873"
+    },
+    "version": "7.0.0-1"
 }
