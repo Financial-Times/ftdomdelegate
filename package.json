@@ -23,5 +23,5 @@
     "publishConfig": {
         "registry": "http://localhost:4873"
     },
-    "version": "100.0.0-6"
+    "version": "100.0.0-7"
 }
