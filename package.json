@@ -1,18 +1,19 @@
 {
     "name": "ftdomdelegate",
-    "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
+    "version": "100.0.0-7",
     "description": "Create and manage a DOM event delegator.",
-    "contributors": [
-        "Matthew Caruana Galizia",
-        "Sam Giles",
-        "Matt Andrews"
-    ],
     "keywords": [
         "delegate",
         "dom",
         "events"
     ],
     "license": "MIT",
+    "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
+    "contributors": [
+        "Matthew Caruana Galizia",
+        "Sam Giles",
+        "Matt Andrews"
+    ],
     "main": "main.js",
     "browser": "main.js",
     "devDependencies": {
@@ -22,6 +23,5 @@
     },
     "publishConfig": {
         "registry": "http://localhost:4873"
-    },
-    "version": "100.0.0-7"
+    }
 }
