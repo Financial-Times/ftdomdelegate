@@ -29,6 +29,6 @@
         "origami-ci-tools": "^2.1.0"
     },
     "publishConfig": {
-        "registry": "http://localhost:4873"
+        "registry": "https://origami-npm-registry-prototype.herokuapp.com"
     }
 }
