@@ -1,34 +1,42 @@
 {
-    "name": "ftdomdelegate",
-    "version": "100.0.0-8",
-    "description": "Create and manage a DOM event delegator.",
-    "keywords": [
-        "delegate",
-        "dom",
-        "events"
-    ],
-    "license": "MIT",
-    "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
-    "contributors": [
-        "Matthew Caruana Galizia",
-        "Sam Giles",
-        "Matt Andrews"
-    ],
-    "type": "module",
-    "exports": {
-        ".": {
-            "browser": "./main.js"
-        }
-    },
-    "main": "main.js",
-    "browser": "./main.js",
-    "types": "types",
-    "devDependencies": {
-        "eslint": "^7.9.0",
-        "eslint-config-origami-component": "^2.1.0",
-        "origami-ci-tools": "^2.1.0"
-    },
-    "publishConfig": {
-        "registry": "https://origami-npm-registry-prototype.herokuapp.com"
+  "name": "ftdomdelegate",
+  "version": "100.0.0-10",
+  "description": "Create and manage a DOM event delegator.",
+  "keywords": [
+    "delegate",
+    "dom",
+    "events"
+  ],
+  "homepage": "https://github.com/Financial-Times/ftdomdelegate#readme",
+  "bugs": {
+    "url": "https://github.com/Financial-Times/ftdomdelegate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Financial-Times/ftdomdelegate.git"
+  },
+  "license": "MIT",
+  "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
+  "contributors": [
+    "Matthew Caruana Galizia",
+    "Sam Giles",
+    "Matt Andrews"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "browser": "./main.js"
     }
+  },
+  "main": "main.js",
+  "browser": "./main.js",
+  "types": "types",
+  "devDependencies": {
+    "eslint": "^7.9.0",
+    "eslint-config-origami-component": "^2.1.0",
+    "origami-ci-tools": "^2.1.0"
+  },
+  "publishConfig": {
+    "registry": "https://origami-npm-registry-prototype.herokuapp.com"
+  }
 }
