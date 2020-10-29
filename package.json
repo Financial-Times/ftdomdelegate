@@ -39,5 +39,8 @@
   },
   "publishConfig": {
     "registry": "https://origami-npm-registry-prototype.herokuapp.com"
+  },
+  "scripts": {
+    "build": "tsc src/**/*.js main.js --declaration --allowJs --emitDeclarationOnly --outDir types"
   }
 }
