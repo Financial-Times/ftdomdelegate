@@ -42,5 +42,8 @@
   },
   "scripts": {
     "build": "tsc src/**/*.js main.js --declaration --allowJs --emitDeclarationOnly --outDir types"
+  },
+  "engines": {
+    "npm": "^7"
   }
 }
