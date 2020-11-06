@@ -1,6 +1,6 @@
 {
   "name": "ftdomdelegate",
-  "version": "100.0.0-11",
+  "version": "100.0.0-12",
   "description": "Create and manage a DOM event delegator.",
   "keywords": [
     "delegate",
