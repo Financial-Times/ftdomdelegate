@@ -5,18 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    # Required for npx origami-ci branch, specifically for bundle-size-cli
-    - run: git fetch --prune --unshallow
     - uses: actions/setup-node@v2.1.5
       with:
         node-version: 12.x
-    - run: npm install --only=dev
-    - name: Repository name
-      id: repo_name
-      run: echo ::set-output name=REPO_NAME::${GITHUB_REPOSITORY/*\//}
-    - run: npx origami-ci branch
-      env:
-        ORIGAMI_CI_NAME: ${{ steps.repo_name.outputs.REPO_NAME }}
-        ORIGAMI_CI_VERSION: 0.0.0
-        GITHUB_TOKEN: ${{ secrets.ORIGAMI_FOX_ACCESS_TOKEN }}
-        ORIGAMI_PULL_REQUEST: ${{ github.event.pull_request.html_url }}
+    - run: npm install -g npm@^7
+    - run: npm install -g origami-build-tools@prerelease
+    - run: obt install
+      continue-on-error: true
+    - run: obt verify
+      continue-on-error: true
+    - run: obt test
+      continue-on-error: true
