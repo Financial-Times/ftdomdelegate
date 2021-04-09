@@ -1,9 +1,7 @@
 {
-  "description": "FT's dom delegate library is a component for creating and binding to events on all target elements matching the given selector. ",
-  "keywords": ["events", "DOM", "listener" ],
-  "origamiType": "module",
+	"origamiType": "library",
   "origamiCategory": "utilities",
-  "origamiVersion": 1,
+	"origamiVersion": "2.0",
   "support": "https://github.com/Financial-Times/ftdomdelegate/issues",
   "supportStatus": "maintained",
   "browserFeatues": {
