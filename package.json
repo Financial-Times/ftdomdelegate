@@ -1,7 +1,7 @@
 {
   "name": "ftdomdelegate",
-	"description": "FT's dom delegate library is a library for creating and binding to events on all target elements matching the given selector.",
-	"browser": "main.js",
+  "description": "FT's dom delegate library is a library for creating and binding to events on all target elements matching the given selector.",
+  "browser": "main.js",
   "author": "FT Labs <enquiries@labs.ft.com> (http://labs.ft.com/)",
   "contributors": [
     "Matthew Caruana Galizia",
@@ -11,15 +11,15 @@
   "keywords": [
     "delegate",
     "dom",
-		"events",
-		"listener"
+    "events",
+    "listener"
   ],
   "license": "MIT",
   "devDependencies": {
     "eslint": "^7.25.0",
     "eslint-config-origami-component": "^2.1.1",
-		"remark": "^13.0.0",
-		"remark-lint": "^8.0.0",
-		"remark-preset-lint-origami-component": "^2.0.0-beta.1"
+    "remark": "^13.0.0",
+    "remark-lint": "^8.0.0",
+    "remark-preset-lint-origami-component": "^2.0.0-beta.1"
   }
 }
