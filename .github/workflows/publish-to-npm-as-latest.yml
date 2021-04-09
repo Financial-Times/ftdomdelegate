@@ -1,0 +1,22 @@
+name: Publish to npm as latest version
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+' # non-prerelease tag
+jobs:
+  publish-latest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2.1.5
+      with:
+        node-version: '12.x'
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm ci
+    - name: Get the version
+      id: version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - run: npm version --no-git-tag-version ${{ steps.version.outputs.VERSION }}
+    - run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
