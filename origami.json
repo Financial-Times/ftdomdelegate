@@ -1,7 +1,7 @@
 {
-	"origamiType": "library",
+  "origamiType": "library",
   "origamiVersion": "2.0",
-	"support": "https://github.com/Financial-Times/ftdomdelegate/issues",
+  "support": "https://github.com/Financial-Times/ftdomdelegate/issues",
   "supportStatus": "maintained",
   "browserFeatues": {
     "required": [
