@@ -34,7 +34,7 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
     - run: npm ci
     - uses: Financial-Times/origami-percy@v2
-        with:
-          github-token: ${{secrets.ORIGAMI_FOX_ACCESS_TOKEN}} # To comment as the Fox mascot GitHub user
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+      with:
+        github-token: ${{secrets.ORIGAMI_FOX_ACCESS_TOKEN}} # To comment as the Fox mascot GitHub user
+      env:
+        PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
