@@ -1,5 +1,11 @@
 # Migration
 
+### Migrating from v4 to v5
+
+Support for Bower and version 2 of the Origami Build Service have been removed.
+
+Follow [the migration guide on the Origami website](https://origami.ft.com/docs/tutorials/bower-to-npm/).
+
 ## Migrating from v3 to v4
 
 To support IE11 and other older browsers v4 requires the [Element.prototype.matches](https://polyfill.io/v3/url-builder/#Element.prototype.matches-polyfill) polyfill.
